@@ -1,0 +1,121 @@
+@font-face {
+  font-family: "FuturisticFont";
+  src: url("fonts/Orbitron/Orbitron-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Normal";
+  src: url("fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "BtnsStyle";
+  src: url("fonts/Rethink_Sans/static/RethinkSans-Bold.ttf") format("truetype");
+}
+
+.cameras_panel_nav {
+  width: 100vw;
+  height: 140px;
+  background-color: rgb(21, 20, 20);
+  border-bottom: 3px solid rgb(143, 143, 143);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+}
+
+.cameraDevicesHolder {
+  display: flex;
+  flex-direction: row;
+  flex: 3;
+  overflow-x: auto;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.cameraDeviceBox {
+  width: 100px;
+  height: 80%;
+  background-color: rgb(25, 25, 25);
+  color: cyan;
+  margin: 10px;
+  flex-shrink: 0;
+  font-family: "FuturisticFont";
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  border: 2px solid cyan;
+  transition: 0.5s;
+  letter-spacing: 1px;
+}
+
+.cameraDeviceBox:hover {
+  color: black;
+  background-color: cyan;
+  color: #050801;
+  box-shadow: 0 0 3px #16ecff, 0 0 10px #16ecff, 0 0 20px #16ecff;
+}
+
+.navControlBtnsHolder {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex: 2;
+}
+
+.viewCamera3DModel {
+  height: 80%;
+  width: 170px;
+  background-color: rgb(20, 20, 20);
+  border-radius: 10px;
+  border: 3px, solid, black;
+}
+
+.closeConnectionsBtn {
+  height: 80%;
+  width: 170px;
+  position: relative;
+  font-size: 15px;
+  font-family: "FuturisticFont";
+  font-weight: 1000;
+  background-color: rgb(20, 20, 20);
+  border-radius: 10px;
+  border: 2px, solid, black;
+  color: cyan;
+}
+
+.closeSelectViewBtn{
+  width: 40px;
+  height: 40px;
+  background-image: url('assets/closeSelectViewBtn.png');
+  background-size: cover;
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.closeSelectViewBtn:hover{
+  background-image: url('assets/closeSelectViewBtnHover.png');
+}
+
+.selectCamViewBtn{
+  height: 100px;
+  width: 140px;
+  background-color: black;
+  border: 2px solid cyan;
+  border-radius: 8px;
+  color: cyan;
+  text-align: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: .5s;
+}
+
+.selectCamViewBtn:hover{
+  color: black;
+  background-color: cyan;
+  color: #050801; /* Text color on hover */
+  box-shadow: 0 0 3px #16ecff,
+              0 0 10px #16ecff,
+              0 0 20px #16ecff;
+}

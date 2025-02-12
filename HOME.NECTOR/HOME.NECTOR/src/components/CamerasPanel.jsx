@@ -1,7 +1,7 @@
 import '../styles/CamerasPanelStyle.css'
 import CamerasPanelMain from './CamerasPanelMain';
 import CamerasPanelNav from './CamerasPanelNav';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const CamerasPanel = () => {
     const [view1CamDevice, setView1CamDevice] = useState(null);

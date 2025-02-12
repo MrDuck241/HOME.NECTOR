@@ -5,13 +5,11 @@ const CamerasPanelNav = ({onSelectCamDevice}) => {
     const [loading, setLoading] = useState(true);
     const [errorMsg, setErrorMsg] = useState("");
     const [fetchedCameras, setFetchedCameras] = useState(null);
-    const [view1CamDevice, setView1CamDevice] = useState(null);
-    const [view2CamDevice, setView2CamDevice] = useState(null);
     const [showSelectDeviceViewID, setShowSelectDeviceViewID] = useState(false);
     const [bufforCamDevice, setBufforCamDeivce] = useState(null);
 
     useEffect(() => {
-        const backendUrl = "http://192.168.1.101:80/php/get_cameras.php";
+        const backendUrl = import.meta.env.VITE_GET_CAMERAS_PHP_SCRIPT_ADDRESS;
         fetch(backendUrl)
             .then((response) => {
                 if (!response.ok) {
@@ -23,7 +21,7 @@ const CamerasPanelNav = ({onSelectCamDevice}) => {
                 setFetchedCameras(data.data);
                 setLoading(false);
             })
-            .catch((err) => {
+            .catch(() => {
                 setErrorMsg("Failed to download cameras from database");
                 setLoading(false);
             });
@@ -73,7 +71,7 @@ const CamerasPanelNav = ({onSelectCamDevice}) => {
                 </div>
                 <div className='navControlBtnsHolder'>
                     <div className='viewCamera3DModel'>
-                        {/* Możesz dodać coś tutaj */}
+                        {/* Do zrobienia */}
                     </div>
                     <div className='closeConnectionsBtn'>
                         <span className='w-[90%] h-[auto] text-center absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4'>

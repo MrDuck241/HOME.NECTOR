@@ -1,0 +1,70 @@
+.devicesPanelMain{
+    height: 80vh;
+    width: 98%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.deviceFullNameHolder{
+    height: 10%;
+    width: auto;
+    background-color: gray;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.deviceParamBoxesHolder{
+    height: 42%;
+    width: 98%;
+    border: 5px solid red;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.deviceDescriptionAndButtonsHolder{
+    width: 35%;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgb(185, 182, 182);
+}
+
+.deviceDataAndButtonsHolder{
+    width: 56%;
+    background-color: beige;
+    border-radius: 12px;
+}
+
+.descriptionHolderTitle{
+    height: 10%;
+    width: 100%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding-left: 8px;
+    color: cyan;
+    border-bottom: 2px solid grey;
+}
+
+.descriptionHolder{
+    height: 65%;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    overflow-y: auto;
+    color: cyan;
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.descriptionButtonsHolder{
+    height: 25%;
+    width: 100%;
+    background-color: rgb(116, 75, 26);
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+}

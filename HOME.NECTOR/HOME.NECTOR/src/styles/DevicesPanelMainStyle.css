@@ -1,118 +1,216 @@
+* {
+    transition: 0.8s;
+}
+
 .devicesPanelMain{
-    height: 80vh;
-    width: 98%;
+    width: 98vw;
+    height: 80%;
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    overflow: hidden;
+
 }
 
 .deviceFullNameHolder{
-    height: 10%;
     width: auto;
-    font-size: 20px;
+    color: cyan;
+    font-size: 24px;
     font-weight: bold;
     letter-spacing: 1px;
-    color: cyan;
+    height: 6%;
 }
 
-.deviceParamBoxesHolder{
-    height: 40%;
-    width: 98%;
+.deviceDataBoxesGrid{
+    height: 94%;
+    display: grid;
+    grid-template-columns: 40% 50%;
+    grid-template-rows: 46% 46%;
+    justify-content: center;
+    row-gap: 5%;
+    column-gap: 3%;
     margin-top: 15px;
-    display: flex;
-    justify-content: space-evenly;
 }
+
+.cyanStyleBtn:hover{
+    background-color: cyan;
+    color: black;
+    transition: 0.5s;
+}
+
+/*--------------------deviceDescriptionAndButtonsHolder (1) style--------------------*/
 
 .deviceDescriptionAndButtonsHolder{
-    width: 35%;
+    border: 3px solid lightgray;
     border-radius: 12px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(185, 182, 182);
-}
-
-.deviceDataAndButtonsHolder{
-    width: 56%;
-    background-color: beige;
-    border-radius: 12px;
+    align-items: center;
 }
 
 .descriptionHolderTitle{
-    height: 10%;
-    width: 100%;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    padding-left: 8px;
     color: cyan;
-    border-bottom: 2px solid grey;
+    font-size: 18px;
+    border-bottom: 2px solid lightgray;
+    width: 100%;
+    height: 12%;
+    text-align: center;
 }
 
 .descriptionHolder{
-    height: 65%;
-    width: 100%;
-    padding-left: 8px;
-    padding-right: 8px;
+    width: 90%;
+    height: 55%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: lightblue;
     overflow-y: auto;
-    color: cyan;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
 }
 
 .descriptionButtonsHolder{
-    height: 25%;
+    border-top: 2px solid lightgray;
     width: 100%;
-    border-top: 2px solid gray;
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
+    height: 24%;
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.device3DModelHolder{
-    width: 35%;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    border: 3px solid rgb(185, 182, 182);
-    color: cyan;
-    font-size: 20px;
-    text-align: center;
-}
-
-.deviceDataChartHolder{
-    width: 56%;
-    background-color: beige;
-    border-radius: 12px;
-}
-
-.descriptionHolderButtonsOrganizer{
-    width: 90%;
-    height: 45%;
-    display: flex;
-    justify-content: space-evenly;
-}
-
 .deviceLocationHolder{
-    width: 70%;
-    height: 100%;
+    width: 55%;
     text-align: center;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 .deviceLocationChangeBtn{
     width: 20%;
-    height: 100%;
-    background-color: rgb(68, 68, 68);
-    border-radius: 6px;
+    background-color: rgb(54, 52, 52);
+    color: cyan;
+    border-radius: 10px;
+    border: 2px solid cyan;
 }
 
-.expandDescriptionHolderBtn{
-    width: 94%;
-    background-color: rgb(68, 68, 68);
+/*--------------------deviceDataAndButtonsHolder (2) style--------------------*/
+
+.deviceDataAndButtonsHolder{
+    border-radius: 12px;
+    display: flex;
+    border: 3px solid lightgray;
+    overflow: hidden;
+}
+
+.deviceDataHolder{
+    width: 60%;
+    height: 100%;
+    border-right: 3px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deviceDataHolderTitle{
     color: cyan;
-    border-radius: 6px;
+    width: 100%;
+    border-bottom: 3px solid lightgray;
+    text-align: center;
+    font-size: 18px;
+    height: 12%;
+}
+
+.deviceDataTextHolder{
+    width: 90%;
+    height: 64%;
+    color: lightblue;
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    
+}
+
+.deviceDataOptionsHolder{
+    width: 100%;
+    height: 24%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: cyan;
+    border-top: 2px solid lightgray;
+}
+
+.startSavingDataBtn{
+    background-color: rgb(54, 52, 52);
+    border: 2px solid cyan;
+    border-radius: 8px;
+    width: 35%;
+    height: 60%;
+}
+
+.savingDataSettingBtn{
+    height: 50px;
+    width: 50px;
+    background-image: url("assets/device_icons/settings_icon.png");
+    background-size: cover;
+}
+
+.showDataHistoryBtn{
+    background-color: rgb(54, 52, 52);
+    border: 2px solid cyan;
+    border-radius: 8px;
+    width: 35%;
+    height: 60%;
+}
+
+.deviceButtonHolder{
+    width: 40%;
+    height: 100%;
+    display: flex;
+}
+
+.buttonsHolder{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonScroll{
+    height: 90%;
+    width: 90%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    color: lightblue;
+}
+
+.hideDeviceButtonsBtn{
+    color: cyan;
+    writing-mode: vertical-rl;
+    width: 20%;
+    font-size: 20px;
+    border-left: 3px dashed lightgray;
+}
+
+/*--------------------device3DModelHolder (3) style--------------------*/
+
+.device3DModelHolder{
+    border-radius: 12px;
+    border: 2px solid gray;
+}
+
+/*--------------------deviceDataChartHolder (4) style--------------------*/
+
+.deviceDataChartHolder{
+    border-radius: 12px;
+    border: 2px solid gray;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import '../styles/RobotsPanelMainStyle.css';
-import RobotModel from './RobotModel';
+import DeviceModel from './DeviceModel';
 
 const RobotsPanelMain = ({ onCancelSelection, selectedRobot }) => {
     const [model3DPath, setModel3DPath] = useState("");
@@ -199,7 +199,8 @@ const RobotsPanelMain = ({ onCancelSelection, selectedRobot }) => {
     useEffect(() => {
         if (selectedRobot) {
             setSelectedRobotDevice(selectedRobot);
-            const path = selectedRobot.ID_Name.split('-')[0];
+            let path = selectedRobot.ID_Name.split('-')[0];
+            path = "robots/" + path;
             setModel3DPath(path);
         } else {
             setModel3DPath("");
@@ -228,7 +229,7 @@ const RobotsPanelMain = ({ onCancelSelection, selectedRobot }) => {
             </div>
             <div className="robot3DModelAndBtns">
                 <div style={{ width: "100%", height: "80%" }}>
-                    {model3DPath && <RobotModel path={model3DPath} />}
+                    {model3DPath && <DeviceModel path={model3DPath} />}
                 </div>
                 <div className="flex h-[20%] justify-evenly">
                     <button className="robotConnBtn" onClick={connectToRobot}>

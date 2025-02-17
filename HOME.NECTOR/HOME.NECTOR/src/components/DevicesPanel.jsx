@@ -1,12 +1,20 @@
 import DevicesPanelNav from './DevicesPanelNav';
 import DevicesPanelMain from './DevicesPanelMain'
+import { useState } from 'react';
 import '../styles/DevicesPanelStyle.css'
 
 const DevicesPanel = () => {
+
+    const [selectedDevice, setSelectedDevice] = useState(null);
+
+    const selectDevice = (device) => {
+        setSelectedDevice(device);
+    }
+
     return (
         <div className="devicesPanel">
-            <DevicesPanelNav/>
-            <DevicesPanelMain/>
+            <DevicesPanelNav onSelectDevice = {selectDevice}/>
+            <DevicesPanelMain device = {selectedDevice}/>
         </div>
     )
 }

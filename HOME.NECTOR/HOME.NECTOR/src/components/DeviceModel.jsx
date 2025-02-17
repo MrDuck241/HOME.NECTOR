@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-const RobotModel = ({path}) => {
+const DeviceModel = ({path}) => {
   const containerRef = useRef();
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const RobotModel = ({path}) => {
     // Ładowanie modelu STL
     const loader = new STLLoader();
     loader.load(
-      `3D_models/robots/${path}.stl`,
+      `3D_models/${path}.stl`,
       (geometry) => {
         const material = new THREE.MeshPhongMaterial({
           color: 0xffffff,
@@ -85,4 +85,4 @@ const RobotModel = ({path}) => {
   return <div ref={containerRef} style={{ width: "100%", height: "100%" }} />;
 };
 
-export default RobotModel;
+export default DeviceModel;

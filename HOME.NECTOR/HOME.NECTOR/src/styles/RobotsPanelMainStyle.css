@@ -1,4 +1,4 @@
-.robots_panel_main {
+.robotsPanelMain {
   width: 100vw;
   height: 80%;
   display: flex;
@@ -77,9 +77,9 @@
 }
 
 .robotConnBtn:hover {
-  background-color: #03f417; /* Background color on hover */
-  color: #050801; /* Text color on hover */
-  box-shadow: 0 0 3px #03f417, 0 0 10px #03f417, 0 0 20px #03f417; /* Efekt świetlny na hover */
+  background-color: #03f417;
+  color: #050801;
+  box-shadow: 0 0 3px #03f417, 0 0 10px #03f417, 0 0 20px #03f417;
 }
 
 .robotCancelBtn {
@@ -99,9 +99,9 @@
 }
 
 .robotCancelBtn:hover {
-  background-color: #f80400; /* Background color on hover */
-  color: #050801; /* Text color on hover */
-  box-shadow: 0 0 3px #f80400, 0 0 10px #f80400, 0 0 20px #f80400; /* Efekt świetlny na hover */
+  background-color: #f80400; 
+  color: #050801;
+  box-shadow: 0 0 3px #f80400, 0 0 10px #f80400, 0 0 20px #f80400; 
 }
 
 .robotBtn {

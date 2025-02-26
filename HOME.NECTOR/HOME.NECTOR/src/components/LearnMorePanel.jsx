@@ -1,8 +1,5 @@
 const LearnMorePanel = () => {
-    return (
-        <>
-        </>
-    )
-}
+  return <></>;
+};
 
-export default LearnMorePanel
+export default LearnMorePanel;

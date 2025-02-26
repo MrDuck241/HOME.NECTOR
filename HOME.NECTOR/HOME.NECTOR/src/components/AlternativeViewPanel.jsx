@@ -1,8 +1,5 @@
 const AlternativeViewPanel = () => {
-    return (
-        <>
-        </>
-    )
-}
+  return <></>;
+};
 
 export default AlternativeViewPanel;

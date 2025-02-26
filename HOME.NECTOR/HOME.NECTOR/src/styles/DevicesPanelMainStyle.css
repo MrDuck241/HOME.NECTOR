@@ -32,6 +32,7 @@
 .cyanStyleBtn:hover{
     background-color: cyan;
     color: black;
+    font-size: 18px;
     transition: 0.5s;
 }
 
@@ -153,7 +154,7 @@
 .savingDataSettingBtn{
     height: 50px;
     width: 50px;
-    background-image: url("assets/device_icons/settings_icon.png");
+    background-image: url("assets/icons/settingsIcon.png");
     background-size: cover;
 }
 
@@ -201,6 +202,10 @@
     font-size: 20px;
     border-left: 3px dashed lightgray;
     transition: 0.8s;
+}
+
+.hideDeviceButtonsBtn:hover{
+    font-size: 23px;
 }
 
 /*--------------------device3DModelHolder (3) style--------------------*/

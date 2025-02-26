@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-const DeviceModel = ({path}) => {
+const DeviceModel = ({ path }) => {
   const containerRef = useRef();
 
   useEffect(() => {
@@ -11,11 +11,11 @@ const DeviceModel = ({path}) => {
     const width = container.clientWidth;
     const height = container.clientHeight;
 
-    // Scena
+    // Scene
     const scene = new THREE.Scene();
     scene.background = null;
 
-    // Kamera
+    // Camera
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
     camera.position.set(100, 0, 0); // Widok z boku
     camera.lookAt(0, 0, 0);
@@ -23,10 +23,10 @@ const DeviceModel = ({path}) => {
     // Renderer
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(width, height);
-    renderer.setClearColor(0x000000, 0); // Ustaw kolor tła na czarny (0x000000) i przezroczystość na 0
+    renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
 
-    // Oświetlenie
+    // Lighting
     const light1 = new THREE.DirectionalLight(0xffffff, 1);
     light1.position.set(1, 1, 1).normalize();
     scene.add(light1);
@@ -35,7 +35,7 @@ const DeviceModel = ({path}) => {
     light2.position.set(-1, -1, -1).normalize();
     scene.add(light2);
 
-    // Ładowanie modelu STL
+    // Loading stl model
     const loader = new STLLoader();
     loader.load(
       `3D_models/${path}.stl`,
@@ -47,7 +47,7 @@ const DeviceModel = ({path}) => {
         });
         const mesh = new THREE.Mesh(geometry, material);
 
-        // Dopasowanie modelu
+        // Model fitting
         geometry.computeBoundingBox();
         const center = geometry.boundingBox.getCenter(new THREE.Vector3());
 
@@ -59,16 +59,16 @@ const DeviceModel = ({path}) => {
       (error) => console.error("Error loading STL:", error)
     );
 
-    // Interaktywność
+    // Interactivity
     const controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true; // Włączenie tłumienia ruchu dla płynniejszych obrotów
-    controls.dampingFactor = 0.05; // Ustawienie intensywności tłumienia
-    controls.mouseButtons.RIGHT = null; // Zablokowanie przycisku prawym myszki
+    controls.enableDamping = true; // Turn on motion damping for smoother rotations
+    controls.dampingFactor = 0.05; // Setting the damping intensity
+    controls.mouseButtons.RIGHT = null; // Locking the right mouse button
 
-    // Animacja
+    // Animation
     const animate = () => {
       requestAnimationFrame(animate);
-      controls.update(); // Aktualizacja kontrolera
+      controls.update(); // Controler update
       renderer.render(scene, camera);
     };
 

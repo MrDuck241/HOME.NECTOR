@@ -1,25 +1,28 @@
-import '../styles/RobotsPanelStyle.css'
-import RobotsPanelMain from './RobotsPanelMain';
-import RobotsPanelNav from './RobotsPanelNav';
-import { useState } from 'react';
+import "../styles/RobotsPanelStyle.css";
+import RobotsPanelMain from "./RobotsPanelMain";
+import RobotsPanelNav from "./RobotsPanelNav";
+import { useState } from "react";
 
 const RobotsPanel = () => {
-    const [selectedRobot, setSelectedRobot] = useState(null);
+  const [selectedRobot, setSelectedRobot] = useState(null);
 
-    const selectRobot = (robotDevice) => {
-        setSelectedRobot(robotDevice);
-    }
+  const selectRobot = (robotDevice) => {
+    setSelectedRobot(robotDevice);
+  };
 
-    const cancelSelection = () => {
-        setSelectedRobot(null);
-    }
+  const cancelSelection = () => {
+    setSelectedRobot(null);
+  };
 
-    return (
-        <div className="robotsPanel">
-            <RobotsPanelNav onSelectRobot = {selectRobot}/>
-            <RobotsPanelMain onCancelSelection = {cancelSelection} selectedRobot = {selectedRobot}/>
-        </div>
-    )
-}
+  return (
+    <div className="robotsPanel">
+      <RobotsPanelNav onSelectRobot={selectRobot} />
+      <RobotsPanelMain
+        onCancelSelection={cancelSelection}
+        selectedRobot={selectedRobot}
+      />
+    </div>
+  );
+};
 
 export default RobotsPanel;

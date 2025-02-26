@@ -13,7 +13,7 @@
   src: url("fonts/Rethink_Sans/static/RethinkSans-Bold.ttf") format("truetype");
 }
 
-.cameras_panel_nav {
+.camerasPanelNav {
   width: 100vw;
   height: 140px;
   background-color: rgb(21, 20, 20);
@@ -114,7 +114,7 @@
 .selectCamViewBtn:hover{
   color: black;
   background-color: cyan;
-  color: #050801; /* Text color on hover */
+  color: #050801; 
   box-shadow: 0 0 3px #16ecff,
               0 0 10px #16ecff,
               0 0 20px #16ecff;

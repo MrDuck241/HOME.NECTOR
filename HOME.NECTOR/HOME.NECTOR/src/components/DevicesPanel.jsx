@@ -1,22 +1,21 @@
-import DevicesPanelNav from './DevicesPanelNav';
-import DevicesPanelMain from './DevicesPanelMain'
-import { useState } from 'react';
-import '../styles/DevicesPanelStyle.css'
+import DevicesPanelNav from "./DevicesPanelNav";
+import DevicesPanelMain from "./DevicesPanelMain";
+import { useState } from "react";
+import "../styles/DevicesPanelStyle.css";
 
 const DevicesPanel = () => {
+  const [selectedDevice, setSelectedDevice] = useState(null);
 
-    const [selectedDevice, setSelectedDevice] = useState(null);
+  const selectDevice = (device) => {
+    setSelectedDevice(device);
+  };
 
-    const selectDevice = (device) => {
-        setSelectedDevice(device);
-    }
-
-    return (
-        <div className="devicesPanel">
-            <DevicesPanelNav onSelectDevice = {selectDevice}/>
-            <DevicesPanelMain device = {selectedDevice}/>
-        </div>
-    )
-}
+  return (
+    <div className="devicesPanel">
+      <DevicesPanelNav onSelectDevice={selectDevice} />
+      <DevicesPanelMain device={selectedDevice} />
+    </div>
+  );
+};
 
 export default DevicesPanel;

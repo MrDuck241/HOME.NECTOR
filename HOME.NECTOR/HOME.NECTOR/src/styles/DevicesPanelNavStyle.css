@@ -72,7 +72,7 @@
     color: black;
 }
 
-.deviceBtn{
+.deviceBtn, .broadcastDeviceBtn{
     width: 100px;
     height: 80%;
     background-color: rgb(25, 25, 25);
@@ -86,6 +86,21 @@
     border: 2px solid cyan;
     transition: 0.8s;
     letter-spacing: 1px;
+}
+
+.broadcastDeviceBtn{
+    background-color: rgb(25, 25, 25);
+    color: rgb(255, 106, 0);
+    border: 2px solid rgb(255, 106, 0);
+}
+
+.broadcastDeviceBtn:hover{
+    background-color: rgb(255, 106, 0);
+    color: black;
+}
+
+.broadcastDeviceBtn:focus{
+    box-shadow: 0 0 3px rgb(255, 106, 0), 0 0 10px rgb(255, 106, 0), 0 0 20px rgb(255, 106, 0);
 }
 
 .deviceBtn:focus{

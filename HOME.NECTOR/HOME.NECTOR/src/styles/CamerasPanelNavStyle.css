@@ -16,8 +16,7 @@
 .camerasPanelNav {
   width: 100vw;
   height: 140px;
-  background-color: rgb(21, 20, 20);
-  border-bottom: 3px solid rgb(143, 143, 143);
+  background-color: rgba(21, 20, 20, 0.7);
   border-radius: 15px;
   display: flex;
   flex-direction: row;
@@ -26,10 +25,16 @@
 .cameraDevicesHolder {
   display: flex;
   flex-direction: row;
-  flex: 3;
+  flex: 3.5;
   overflow-x: auto;
   margin-left: 20px;
   margin-bottom: 5px;
+  margin-top: 5px;
+  border: 2px solid rgb(120, 120, 120);
+  background-color: rgba(33, 33, 33, 0.6);
+  border-radius: 15px;
+  padding-left: 10px;
+  padding-top: 4px;
 }
 
 .cameraDeviceBox {
@@ -51,24 +56,82 @@
 .cameraDeviceBox:hover {
   color: black;
   background-color: cyan;
-  color: #050801;
   box-shadow: 0 0 3px #16ecff, 0 0 10px #16ecff, 0 0 20px #16ecff;
+  scale: 1.05;
+}
+
+.cameraDeviceBox:focus {
+  color: black;
+  background-color: cyan;
+  box-shadow: 0 0 3px #16ecff, 0 0 10px #16ecff, 0 0 20px #16ecff;
+  scale: 1.05;
 }
 
 .navControlBtnsHolder {
+  margin: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   flex: 2;
+  border: 2px solid rgb(120, 120, 120);
+  background-color: rgba(33, 33, 33, 0.6);
+  border-radius: 15px;
 }
 
-.viewCamera3DModel {
-  height: 80%;
-  width: 170px;
-  background-color: rgb(20, 20, 20);
+.navControlBtnsSubHolder1, .navControlBtnsSubHolder2{
+  height: 100%;
+  display: flex;
+}
+
+.navControlBtnsSubHolder1{
+  width: 40%;
+  border-right: 2px dashed gray;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.navControlBtnsSubHolder2{
+  width: 60%;
+  border-left: 2px dashed gray;
+  flex-direction: row;
+  padding-left: 5px;
+}
+
+.infoBtn{
+  background-image: url("assets/icons/infoBtn.png");
+  background-size: cover;
+}
+
+.searchDevicesBtn{
+  width: 80%;
+  height: 40px;
+  border: 2px solid rgb(197, 193, 193);
+  color: cyan;
   border-radius: 10px;
-  border: 3px, solid, black;
+}
+
+.cyanHoverBtn:hover{
+  transition: 0.4s;
+  box-shadow: 0 0 3px #16ecff, 0 0 10px #16ecff, 0 0 20px #16ecff;
+  scale: 1.05;
+}
+
+.expandableMenu{
+  width: 55px;
+  height: 55px;
+  background-image: url("assets/icons/expandableMenu.png");
+  background-size: cover;
+}
+
+.devicesListInfoBtn{
+  width: 55px;
+  height: 55px;
+  background-image: url("assets/icons/devicesListInfoBtn.png");
+  background-size: cover;
 }
 
 .closeConnectionsBtn {
@@ -118,4 +181,49 @@
   box-shadow: 0 0 3px #16ecff,
               0 0 10px #16ecff,
               0 0 20px #16ecff;
+}
+
+.selectGridOptionPopup{
+  width: 50vw;
+  height: 60vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  border: 3px solid gray;
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.optionsScrollArea{
+  width: 98%;
+  height: 98%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.gridOptionBox{
+  width: 80%;
+  height: 120px;
+  background-color: rgba(112, 112, 107);
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.gridOptionImage{
+  width: 170px;
+  height: 100px;
+  object-fit: cover;
 }

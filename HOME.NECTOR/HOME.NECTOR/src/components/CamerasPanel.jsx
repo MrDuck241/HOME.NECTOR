@@ -4,23 +4,33 @@ import CamerasPanelNav from "./CamerasPanelNav";
 import { useState } from "react";
 
 const CamerasPanel = () => {
-  const [view1CamDevice, setView1CamDevice] = useState(null);
-  const [view2CamDevice, setView2CamDevice] = useState(null);
+  const [camerasGridOption, setCamerasGridOption] = useState(1);
+  const [newViewCamDevice, setNewViewCamDevice] = useState(null);
+  const [devicesList, setDevicesList] = useState([]);
 
-  const selectCamDevice = (viewID, camDevice) => {
-    if (viewID == 1) {
-      setView1CamDevice(camDevice);
-    } else if (viewID == 2) {
-      setView2CamDevice(camDevice);
-    }
+  const selectCamerasGridOption = (option_value) => {
+    setCamerasGridOption(option_value);
+  };
+
+  const selectNewViewCamDevice = (new_device) => {
+    setNewViewCamDevice(new_device);
+  };
+
+  const selectDevicesList = (devices_list) => {
+    setDevicesList(devices_list);
   };
 
   return (
     <div className="camerasPanel">
-      <CamerasPanelNav onSelectCamDevice={selectCamDevice} />
+      <CamerasPanelNav
+        onSelectCamerasGridOption={selectCamerasGridOption}
+        onSelectNewViewCamDevice={selectNewViewCamDevice}
+        onSelectDevicesList={selectDevicesList}
+      />
       <CamerasPanelMain
-        view1CamDevice={view1CamDevice}
-        view2CamDevice={view2CamDevice}
+        camerasGridOption={camerasGridOption}
+        newViewCamDevice={newViewCamDevice}
+        devicesList={devicesList}
       />
     </div>
   );

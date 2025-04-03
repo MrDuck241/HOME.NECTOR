@@ -1,9 +1,101 @@
 .main {
   width: 100vw;
-  height: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.camerasViewsScrollableArea{
+  width: 98%;
+  height: 96%;
+  border: 3px solid rgb(103, 100, 100);
+  border-radius: 15px;
+  overflow-y: hidden;
+  display: grid;
+  justify-content: space-evenly;
+  padding: 10px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.camerasViewsArea4x{
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.camerasViewsArea2x{
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.deviceView1{
+  width: 340px;
+  height: 280px;
+  border: 3px solid rgb(109, 109, 109);
+  border-radius: 8px;
+  color: white;
+  object-fit: cover;
+}
+
+.deviceView2{
+  width: 550px;
+  height: 450px;
+  border: 3px solid rgb(109, 109, 109);
+  border-radius: 8px;
+  color: white;
+  object-fit: cover;
+  margin: auto;
+}
+
+.deviceView3{
+  width: 430px;
+  height: 330px;
+  border: 3px solid rgb(109, 109, 109);
+  border-radius: 8px;
+  color: white;
+  object-fit: cover;
+}
+
+.deviceViewWithBtns{
+  width: 670px;
+  height: 480px;
+  border: 3px solid rgb(109, 109, 109);
+  border-radius: 8px;
+  color: white;
+  margin: auto;
   display: flex;
   justify-content: space-evenly;
-  padding-top: 5%;
+  align-items: center;
+}
+
+.cameraBtnsHolder{
+  width: 140px;
+  height: 92%;
+  overflow-y: auto;
+  border: 3px solid rgb(128, 128, 125);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.cameraInfoHolder::-webkit-scrollbar {
+  width: 10px;
+}
+
+.cameraInfoHolder::-webkit-scrollbar-track {
+  background: rgb(87, 87, 87);
+  border-radius: 10px;
+}
+
+.cameraInfoHolder::-webkit-scrollbar-thumb {
+  background: #09a0b7;
+  border-radius: 10px;
+}
+
+.cameraInfoHolder::-webkit-scrollbar-thumb:hover {
+  background: #11e1e5;
 }
 
 .cameraViewBox {

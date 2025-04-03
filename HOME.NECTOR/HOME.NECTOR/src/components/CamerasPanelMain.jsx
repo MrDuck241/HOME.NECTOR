@@ -1,218 +1,120 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef } from "react";
 import "../styles/CamerasPanelMainStyle.css";
 
-// Hook for handling WebSocket
-const useWebSocket = (device, cameraViewRef) => {
-  const [connection, setConnection] = useState(null);
-  const [src, setSrc] = useState(null);
+const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
+  const imageRefs = useRef({});
+  const socketsRef = useRef({}); // 🔹 Użycie useRef zamiast zwykłego obiektu
 
   useEffect(() => {
-    if (!device) return;
-    const ws = new WebSocket(`ws://${device.IP_Address}`);
-    setConnection(ws);
+    devicesList.forEach((camera) => {
+      const url = `ws://${camera.IP_Address}:${camera.Websocket_Port}`;
+      const ws = new WebSocket(url);
 
-    const handleOpen = () =>
-      console.log(`${device.IP_Address} connection established`);
-    ws.onclose = () => {
-      console.log(`${device.IP_Address} connection closed`);
-      setSrc("assets/noCameraSignal.jpg");
-      if (cameraViewRef.current) {
-        cameraViewRef.current.classList.remove("flipped");
-        cameraViewRef.current.classList.remove("mirrored");
-        cameraViewRef.current.classList.remove("negative");
-        cameraViewRef.current.classList.remove("blured");
-      }
-    };
-    const handleError = () =>
-      console.log(`${device.IP_Address} connection error`);
-    const handleMessage = (event) => {
-      const blob = new Blob([event.data], { type: "image/jpeg" });
-      const imageUrl = URL.createObjectURL(blob);
-      setSrc((prev) => {
-        if (prev) URL.revokeObjectURL(prev);
-        return imageUrl;
-      });
-    };
+      ws.onopen = () =>
+        console.log(`Connected with camera: ${camera.IP_Address}`);
 
-    ws.addEventListener("open", handleOpen);
-    ws.addEventListener("error", handleError);
-    ws.addEventListener("message", handleMessage);
+      ws.onmessage = (event) => {
+        const blob = new Blob([event.data], { type: "image/jpeg" });
+        const imageUrl = URL.createObjectURL(blob);
+
+        if (imageRefs.current[camera.id]) {
+          URL.revokeObjectURL(imageRefs.current[camera.id].src);
+          imageRefs.current[camera.id].src = imageUrl;
+        }
+      };
+
+      ws.onerror = (error) =>
+        console.error(`Error with camera: ${camera.IP_Address}`, error);
+      ws.onclose = () =>
+        console.log(`Connection closed with camera: ${camera.IP_Address}`);
+
+      socketsRef.current[camera.id] = ws; // 🔹 Przechowujemy sockety w useRef
+    });
 
     return () => {
-      ws.removeEventListener("open", handleOpen);
-      ws.removeEventListener("error", handleError);
-      ws.removeEventListener("message", handleMessage);
-      ws.close();
+      Object.values(socketsRef.current).forEach((ws) => ws.close());
     };
-  }, [device]);
+  }, [devicesList]);
 
-  return { connection, src };
-};
-
-// Main component
-const CamerasPanelMain = ({ view1CamDevice, view2CamDevice }) => {
-  const cameraView1Ref = useRef(null);
-  const cameraView2Ref = useRef(null);
-
-  const { connection: view1CamConn, src: view1ConnSrc } = useWebSocket(
-    view1CamDevice,
-    cameraView1Ref
-  );
-  const { connection: view2CamConn, src: view2ConnSrc } = useWebSocket(
-    view2CamDevice,
-    cameraView2Ref
-  );
-
-  const [cameraStates, setCameraStates] = useState({
-    view1: { led: false, signalLed: false, buzzer: false },
-    view2: { led: false, signalLed: false, buzzer: false },
-  });
-
-  const toggleState = (camera, stateKey, connection, commandOn, commandOff) => {
-    setCameraStates((prev) => {
-      const newState = !prev[camera][stateKey];
-      if (connection) {
-        connection.send(newState ? commandOn : commandOff);
-      }
-      return {
-        ...prev,
-        [camera]: { ...prev[camera], [stateKey]: newState },
-      };
-    });
-  };
-
-  const toggleEffect = (cameraRef, effectClass) => {
-    if (cameraRef.current) {
-      cameraRef.current.classList.toggle(effectClass);
+  const sendMessageToDevice = (device_id, message) => {
+    const socket = socketsRef.current[device_id]; // 🔹 Pobieramy socket z useRef
+    if (socket) {
+      socket.send(message);
+    } else {
+      console.error(`No WebSocket connection found for device: ${device_id}`);
     }
   };
 
-  const defaultCamBtns = useMemo(
-    () => (cameraRef, connection, camera) =>
-      [
-        {
-          src: "closeConn.png",
-          event: () => connection?.close(),
-        },
-        "recordIcon.png",
-        "stopRecording.png",
-        {
-          src: "upsideDown.png",
-          event: () => toggleEffect(cameraRef, "flipped"),
-        },
-        {
-          src: "mirrorFlip.png",
-          event: () => toggleEffect(cameraRef, "mirrored"),
-        },
-        "zoomIcon.png",
-        {
-          src: "invertColors.png",
-          event: () => toggleEffect(cameraRef, "negative"),
-        },
-        {
-          src: "blurIcon.png",
-          event: () => toggleEffect(cameraRef, "blured"),
-        },
-        {
-          src: "signalLedIcon.png",
-          event: () =>
-            toggleState(
-              camera,
-              "signalLed",
-              connection,
-              "SIGNAL_LED_ON",
-              "SIGNAL_LED_OFF"
-            ),
-        },
-        {
-          src: "flashLedIcon.png",
-          event: () =>
-            toggleState(camera, "led", connection, "LED_ON", "LED_OFF"),
-        },
-        {
-          src: "buzzerIcon.png",
-          event: () =>
-            toggleState(
-              camera,
-              "buzzer",
-              connection,
-              "STILL_SOUND",
-              "NO_SOUND"
-            ),
-        },
-      ],
-    []
-  );
-
-  const renderCameraBtn = (icon_src, index, connection) => {
-    if (typeof icon_src === "object") {
+  const renderCameraBtn = (camera_btn_data, device_id) => {
+    const regex = /^([^\[]+)\[([^\[]+)\/([^\]]+)\]$/;
+    const match = camera_btn_data.match(regex);
+    if (match) {
+      const firstPart = match[1];
+      const secondPart = match[2];
+      const thirdPart = match[3];
       return (
         <img
-          key={index}
-          src={`assets/icons/${icon_src.src}`}
-          alt={icon_src.src}
-          className="cameraBtn"
-          onClick={icon_src.event}
+          className="h-[80px] w-[80px] "
+          src={`assets/icons/${firstPart}.png`}
+          onClick={() => sendMessageToDevice(device_id, secondPart)}
         />
       );
+    } else {
+      console.log("Text in camera_btn_data does not match the proper format");
+      return null;
     }
-    return (
+  };
+
+  const renderDeviceView1 = (device, id) => {
+    console.log(device.Device_Functions);
+    return camerasGridOption == 1 || camerasGridOption == 2 ? (
       <img
-        key={index}
-        src={`assets/icons/${icon_src}`}
-        alt={icon_src}
-        className="cameraBtn"
+        key={id}
+        ref={(el) => (imageRefs.current[id] = el)}
+        className={camerasGridOption == 1 ? "deviceView1" : "deviceView2"}
       />
+    ) : (
+      <div className="deviceViewWithBtns">
+        <div className="flex flex-col justify-evenly h-[100%] w-[430px]">
+          <img
+            key={id}
+            ref={(el) => (imageRefs.current[id] = el)}
+            className="deviceView3"
+          />
+          <div className="h-[100px] flex flex-col overflow-y-auto cameraInfoHolder">
+            <span className="shrink-0">MAC Address: {device.MAC_Address}</span>
+            <span className="shrink-0">IP Address: {device.IP_Address}</span>
+            <span className="shrink-0">Location: Kitchen</span>
+            <span className="shrink-0">Device Type: {device.Device_Type} </span>
+            <span className="shrink-0">
+              Device Model: {device.Device_Model}
+            </span>
+          </div>
+        </div>
+        <div className="cameraBtnsHolder">
+          {device.Device_Functions.map((device_function) => {
+            return renderCameraBtn(device_function, device.id);
+          })}
+        </div>
+      </div>
     );
   };
 
   return (
     <div className="main">
-      {[
-        {
-          ref: cameraView1Ref,
-          src: view1ConnSrc,
-          conn: view1CamConn,
-          cam: "view1",
-        },
-        {
-          ref: cameraView2Ref,
-          src: view2ConnSrc,
-          conn: view2CamConn,
-          cam: "view2",
-        },
-      ].map(({ ref, src, conn, cam }, idx) => (
-        <div className="cameraViewBox" key={idx}>
-          <div className="cameraViewAndLocationHolder">
-            <img
-              ref={ref}
-              className="cameraView"
-              src={src || "assets/noCameraSignal.jpg"}
-              alt={`camera${idx + 1} view`}
-            />
-            <div className="mb-[20px] ml-[15px]">
-              <span className="cameraLocationText">Camera Location</span>
-              <div className="flex flex-row w-[100%]">
-                <input
-                  type="text"
-                  className="locationInput"
-                  placeholder="Enter new location"
-                />
-                <button type="button" className="changeLocationBtn">
-                  Change
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="verticalCameraBtnsHolder">
-            {conn
-              ? defaultCamBtns(ref, conn, cam).map((element, index) =>
-                  renderCameraBtn(element, index, conn)
-                )
-              : null}
-          </div>
+      {devicesList.length > 0 && (
+        <div
+          className={`camerasViewsScrollableArea ${
+            camerasGridOption == 1
+              ? "camerasViewsArea4x"
+              : camerasGridOption == 2 || camerasGridOption == 3
+              ? "camerasViewsArea2x"
+              : "camerasViewsArea2xBtns"
+          }`}
+        >
+          {devicesList.map((device) => renderDeviceView1(device, device.id))}
         </div>
-      ))}
+      )}
     </div>
   );
 };

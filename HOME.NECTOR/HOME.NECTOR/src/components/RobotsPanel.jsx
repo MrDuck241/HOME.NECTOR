@@ -7,6 +7,7 @@ const RobotsPanel = () => {
   const [selectedRobot, setSelectedRobot] = useState(null);
 
   const selectRobot = (robotDevice) => {
+    console.log(robotDevice);
     setSelectedRobot(robotDevice);
   };
 

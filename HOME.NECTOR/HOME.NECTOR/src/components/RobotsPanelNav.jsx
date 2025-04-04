@@ -1,13 +1,17 @@
 import "../styles/RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
 
-const RobotsPanelNav = () => {
+const RobotsPanelNav = ({onSelectRobot}) => {
   const [detectedRobotsList, setDetectedRobotsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
 
   const devices_list_broadcast_server_url = import.meta.env
     .VITE_NODEJS_BROADCAST_SCANNING_SERVER;
+
+  const testRobotData = [{
+    Device_Name: "SRV"
+  }]
 
   const getDevicesListFromBroadcast = (url, message) => {
     return fetch(url, {
@@ -54,12 +58,18 @@ const RobotsPanelNav = () => {
       }
     };
 
-    fetchStartData();
+    //fetchStartData();
+    setLoading(false);
+    setDetectedRobotsList(testRobotData);
   }, []);
+
+  const selectRobot = (selectedRobotData) => {
+    onSelectRobot(selectedRobotData);
+  }
 
   const renderRobotBox = (element, index) => {
     return (
-      <button className="cameraDeviceBox" key={index}>
+      <button className="cameraDeviceBox" key={index} onClick={() => selectRobot(element)}>
         {element.Device_Name}
       </button>
     );

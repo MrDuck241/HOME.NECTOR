@@ -5,7 +5,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 const DeviceModel = ({ path }) => {
   const containerRef = useRef();
-
+  console.log(`3D_models/${path}.stl`);
+  
   useEffect(() => {
     const container = containerRef.current;
     const width = container.clientWidth;

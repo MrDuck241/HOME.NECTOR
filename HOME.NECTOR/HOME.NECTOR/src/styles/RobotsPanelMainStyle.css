@@ -64,6 +64,10 @@
   border-radius: 12px;
   overflow-y: auto;
   border: 2px solid lightgray;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  justify-content: space-evenly;
+  padding: 6%;
 }
 
 .robotDataHolder{

@@ -17,7 +17,7 @@
   width: 100vw;
   height: 140px;
   background-color: rgba(21, 21, 21, 0.616);
-  border-bottom: 2px solid rgb(179, 179, 179);
+  border-bottom: 2px solid lightgray;
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
@@ -55,20 +55,25 @@
   letter-spacing: 1px;
 }
 
+.cyanBtn{
+  background-color: black;
+  border: 2px solid cyan;
+  border-radius: 10px;
+  color: cyan;
+}
+
 .robotsNavBtnsHolder{
   flex: 2;
-  background-color: antiquewhite;
+  background-color: rgba(15, 15, 15, 0.736);
   border-radius: 13px;
   overflow: hidden;
   display: flex;
+  border: 3px solid lightgray;
 }
 
 .searchDevicesBtn{
   width: 140px;
   height: 40px;
-  background-color: black;
-  border: 3px solid cyan;
-  color: cyan;
   text-align: center;
 }
 
@@ -83,4 +88,17 @@
   height: 12px;
   background-image: url("assets/icons/infoBtn.png");
   background-size: cover;
+}
+
+.menuBtn{
+  width: 55px;
+  height: 55px;
+  background-image: url("assets/icons/expandableMenu.png");
+  background-size: cover;
+  transition: 0.3s;
+}
+
+.menuBtn:hover{
+  transform: scale(1.15);
+  box-shadow: 0px 0px 14px cyan;
 }

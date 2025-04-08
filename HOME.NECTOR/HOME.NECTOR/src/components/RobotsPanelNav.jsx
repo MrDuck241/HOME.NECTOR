@@ -110,7 +110,7 @@ const RobotsPanelNav = ({ onSelectRobot }) => {
         )}
       </div>
       <div className="robotsNavBtnsHolder">
-        <div className="w-[40%] h-[100%] bg-slate-200 flex flex-col justify-evenly items-center">
+        <div className="w-[40%] h-[100%] flex flex-col justify-evenly items-center">
           <div>
             <div className="flex items-center gap-[5px]">
               <span className="text-cyan-400">Get Server List</span>
@@ -123,25 +123,31 @@ const RobotsPanelNav = ({ onSelectRobot }) => {
               <button type="button" className="infoBtn" />
             </div>
           </div>
-          <button type="button" className="searchDevicesBtn cyanHoverBtn">
+          <button
+            type="button"
+            className="searchDevicesBtn cyanHoverBtn cyanBtn"
+          >
             Search Devices
           </button>
         </div>
-        <div className="w-[40%] h-[100%] bg-green-700 flex flex-col justify-evenly items-center">
+        <div className="w-[40%] h-[100%] flex flex-col justify-evenly items-center">
           <button
-            className="w-[90%] h-[30%] bg-black text-cyan-400 border-solid border-2 border-gray-400 rounded-xl cyanHoverBtn"
+            className="w-[90%] h-[30%] cyanHoverBtn cyanBtn"
             disabled={!isRobotSelected}
             onClick={connectToRobot}
           >
             Connect To Selected Robot
           </button>
           <button
-            className="w-[90%] h-[30%] bg-black text-cyan-400 border-solid border-2 border-gray-400 rounded-xl cyanHoverBtn"
+            className="w-[90%] h-[30%] cyanHoverBtn cyanBtn"
             disabled={!isRobotSelected}
             onClick={cancelSelectedRobot}
           >
             Cancel Selected Robot
           </button>
+        </div>
+        <div className="flex flex-col items-center justify-evenly w-[20%]">
+          <button className="menuBtn" />
         </div>
       </div>
     </div>

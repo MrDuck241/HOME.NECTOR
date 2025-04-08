@@ -59,7 +59,7 @@ const CamerasPanelNav = ({
       try {
         const startDevicesList = await getDevicesListFromBroadcast(
           devices_list_broadcast_server_url,
-          "who_is_esp_cam"
+          "who_is_iot_cam"
         );
         setDevicesList(startDevicesList);
         setDevicesCopyList(startDevicesList);
@@ -118,7 +118,7 @@ const CamerasPanelNav = ({
     try {
       const newDevicesList = await getDevicesListFromBroadcast(
         devices_list_broadcast_server_url,
-        "who_is_esp_cam"
+        "who_is_iot_cam"
       );
       setDevicesList(newDevicesList);
       setDevicesCopyList(newDevicesList);

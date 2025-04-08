@@ -1,17 +1,20 @@
 import "../styles/RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
 
-const RobotsPanelNav = ({onSelectRobot}) => {
+const RobotsPanelNav = ({ onSelectRobot }) => {
   const [detectedRobotsList, setDetectedRobotsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
+  const [isRobotSelected, setIsRobotSelected] = useState(false);
 
   const devices_list_broadcast_server_url = import.meta.env
     .VITE_NODEJS_BROADCAST_SCANNING_SERVER;
 
-  const testRobotData = [{
-    Device_Name: "SRV"
-  }]
+  const testRobotData = [
+    {
+      Device_Name: "SRV",
+    },
+  ];
 
   const getDevicesListFromBroadcast = (url, message) => {
     return fetch(url, {
@@ -34,7 +37,7 @@ const RobotsPanelNav = ({onSelectRobot}) => {
           Device_Name: obj.Device_Model + "-" + id,
           Data_Source: "broadcastServer",
         }));
-
+        console.log(transformedDeviceList);
         setLoading(false);
         return transformedDeviceList;
       })
@@ -58,21 +61,33 @@ const RobotsPanelNav = ({onSelectRobot}) => {
       }
     };
 
-    //fetchStartData();
+    fetchStartData();
     setLoading(false);
-    setDetectedRobotsList(testRobotData);
   }, []);
 
   const selectRobot = (selectedRobotData) => {
     onSelectRobot(selectedRobotData);
-  }
+    setIsRobotSelected(true);
+  };
 
   const renderRobotBox = (element, index) => {
     return (
-      <button className="cameraDeviceBox" key={index} onClick={() => selectRobot(element)}>
+      <button
+        className="cameraDeviceBox"
+        key={index}
+        onClick={() => selectRobot(element)}
+      >
         {element.Device_Name}
       </button>
     );
+  };
+
+  const connectToRobot = () => {
+    console.log("BTN1 ACTIVE");
+  };
+
+  const cancelSelectedRobot = () => {
+    console.log("BTN2 ACTIVE");
   };
 
   return (
@@ -110,6 +125,22 @@ const RobotsPanelNav = ({onSelectRobot}) => {
           </div>
           <button type="button" className="searchDevicesBtn cyanHoverBtn">
             Search Devices
+          </button>
+        </div>
+        <div className="w-[40%] h-[100%] bg-green-700 flex flex-col justify-evenly items-center">
+          <button
+            className="w-[90%] h-[30%] bg-black text-cyan-400 border-solid border-2 border-gray-400 rounded-xl cyanHoverBtn"
+            disabled={!isRobotSelected}
+            onClick={connectToRobot}
+          >
+            Connect To Selected Robot
+          </button>
+          <button
+            className="w-[90%] h-[30%] bg-black text-cyan-400 border-solid border-2 border-gray-400 rounded-xl cyanHoverBtn"
+            disabled={!isRobotSelected}
+            onClick={cancelSelectedRobot}
+          >
+            Cancel Selected Robot
           </button>
         </div>
       </div>

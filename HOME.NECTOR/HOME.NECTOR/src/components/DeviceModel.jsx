@@ -1,16 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { STLLoader } from "three/examples/jsm/loaders/STLLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-const DeviceModel = ({ path }) => {
+const RenderModel = ({ path }) => {
   const containerRef = useRef();
-  console.log(`3D_models/${path}.stl`);
-  
+  const [fileExists, setFileExists] = useState(false); // State to track if the file exists
+
+  const checkFileExists = async (url) => {
+    try {
+      const response = await fetch(url, { method: "HEAD" }); // Use HEAD request to check for file existence
+      if (response.ok) {
+        setFileExists(true); // If file exists, update the state
+      } else {
+        setFileExists(false); // If file doesn't exist, update the state
+      }
+    } catch (error) {
+      console.error("Error checking file existence:", error);
+      setFileExists(false); // In case of error, assume file doesn't exist
+    }
+  };
+
   useEffect(() => {
     const container = containerRef.current;
     const width = container.clientWidth;
     const height = container.clientHeight;
+
+    // Check if the file exists
+    checkFileExists(`${path}.stl`);
+
+    if (!fileExists) {
+      return; // Exit early if the file doesn't exist
+    }
 
     // Scene
     const scene = new THREE.Scene();
@@ -18,7 +39,7 @@ const DeviceModel = ({ path }) => {
 
     // Camera
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.set(100, 0, 0); // Widok z boku
+    camera.position.set(100, 0, 0); // Side View
     camera.lookAt(0, 0, 0);
 
     // Renderer
@@ -39,7 +60,7 @@ const DeviceModel = ({ path }) => {
     // Loading stl model
     const loader = new STLLoader();
     loader.load(
-      `3D_models/${path}.stl`,
+      `${path}.stl`,
       (geometry) => {
         const material = new THREE.MeshPhongMaterial({
           color: 0xffffff,
@@ -81,9 +102,9 @@ const DeviceModel = ({ path }) => {
       renderer.dispose();
       controls.dispose();
     };
-  }, []);
+  }, [fileExists, path]); // Re-run effect when fileExists or path changes
 
   return <div ref={containerRef} style={{ width: "100%", height: "100%" }} />;
 };
 
-export default DeviceModel;
+export default RenderModel;

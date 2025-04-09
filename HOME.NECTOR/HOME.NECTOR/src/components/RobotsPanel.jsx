@@ -7,9 +7,10 @@ const RobotsPanel = () => {
   const [selectedRobot, setSelectedRobot] = useState(null);
   const [connectRobotClicked, setConnectRobotClicked] = useState(false);
 
-  const connectToRobotClick = () => {
-    setConnectRobotClicked(!connectRobotClicked);
-  }
+  const connectToRobotClick = (value) => {
+    console.log("AKTUALNA WARTOSC CONNECT TO ROBOT", String(value));
+    setConnectRobotClicked(value);
+  };
 
   const selectRobot = (robotDevice) => {
     console.log(robotDevice);
@@ -22,11 +23,14 @@ const RobotsPanel = () => {
 
   return (
     <div className="robotsPanel">
-      <RobotsPanelNav onSelectRobot={selectRobot} onRobotConnectClick={connectToRobotClick}/>
+      <RobotsPanelNav
+        onSelectRobot={selectRobot}
+        onRobotConnectClick={connectToRobotClick}
+      />
       <RobotsPanelMain
         onCancelSelection={cancelSelection}
         selectedRobot={selectedRobot}
-        connectedToRobotClicked = {connectRobotClicked}
+        connectedToRobotClicked={connectRobotClicked}
       />
     </div>
   );

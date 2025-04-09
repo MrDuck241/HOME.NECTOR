@@ -13,8 +13,24 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
 
   const robotConnection = useRef(null);
 
+  const connectToRobot = () => {
+    console.log("Connection function");
+    const robot_conn_url = `ws://${selectedRobot.IP_Address}:${selectedRobot.Websocket_Port}`;
+    robotConnection.current = new WebSocket(robot_conn_url);
+
+    robotConnection.current.onopen = () =>
+      console.log(`Robot connection established: ${selectedRobot.IP_Address}`);
+    robotConnection.current.onopen = () =>
+      robotConnection.current.send("START_POSITION");
+    robotConnection.current.onmessage = (event) => handleRobotMessage(event);
+    robotConnection.current.onerror = (err) =>
+      console.log(`Robot connection has error: ${err}`);
+    robotConnection.current.onclose = () =>
+      console.log("Robot connection closed");
+  };
+
   useEffect(() => {
-    console.log(selectedRobot);
+    if (selectedRobot) connectToRobot();
     if (selectedRobot) {
       setShow3DModel(true);
       const path = "robots/" + selectedRobot.Device_Name;
@@ -24,36 +40,24 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
   }, [selectedRobot]);
 
   const sendMessageToRobot = (message) => {
-    if(robotConnection.current){
+    if (robotConnection.current) {
       robotConnection.current.send(message);
       console.log("Message has been sended to robot");
-    }
-    else console.log("Robot connection is closed and cannot receive message");
-  }
+    } else console.log("Robot connection is closed and cannot receive message");
+  };
 
-  const handleRobotMessage = (message) => {
-
-  }
-
-  const connectedToRobot = () => {
-    const robot_conn_url = `ws://${selectedRobot.IP_Address}:${selectedRobot.Websocket_Port}`;
-    robotConnection.current = new WebSocket(robot_conn_url);
-
-    robotConnection.current.onopen = () => console.log(`Robot connection established: ${selectedRobot.IP_Address}`);
-    robotConnection.current.onmessage = (event) => handleRobotMessage(event);
-    robotConnection.current.onerror = (err) => console.log(`Robot connection has error: ${err}`);
-    robotConnection.current.onclose = () => console.log("Robot connection closed");
-  }
-
-  useEffect(() => {
-    console.log("Connecting to robot in useEffect");
-    if(connectedToRobotClicked) connectedToRobot();
-  }, []);
+  const handleRobotMessage = (message) => {};
 
   const createRobotBtn = (robotFunction) => {
     if (robotFunction === "BASIC_SPIDER_MOVES") {
       return (
         <>
+          <img
+            src="assets/icons/START_POSITION.jpg"
+            className="robotBtn"
+            title="START_POSITION"
+            onClick={() => sendMessageToRobot("START_POSITION")}
+          />
           <img
             src="assets/icons/MOVE_FORWARD.png"
             className="robotBtn"

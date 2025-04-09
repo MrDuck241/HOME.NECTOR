@@ -77,7 +77,7 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
   };
 
   const connectToRobot = () => {
-    onRobotConnectClick();
+    onRobotConnectClick(true);
   };
 
   const cancelSelectedRobot = () => {
@@ -88,13 +88,9 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
     <div className="robotsPanelNav">
       <div className="robotsHolder">
         {loading ? (
-          <p className="robotsHolderCyanInfo">
-            Loading...
-          </p>
+          <p className="robotsHolderCyanInfo">Loading...</p>
         ) : errorMsg ? (
-          <div className="robotsHolderErrorArea">
-            {errorMsg}
-          </div>
+          <div className="robotsHolderErrorArea">{errorMsg}</div>
         ) : detectedRobotsList && detectedRobotsList.length > 0 ? (
           detectedRobotsList.map((element, index) =>
             renderRobotBox(element, index)
@@ -127,8 +123,7 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
         <div className="robotConnectionBtnsHolder">
           <button
             className="robotConnectionBtn cyanHoverBtn cyanBtn"
-            disabled={!isRobotSelected}
-            onClick={connectToRobot}
+            onClick={() => connectToRobot()}
           >
             Connect To Selected Robot
           </button>

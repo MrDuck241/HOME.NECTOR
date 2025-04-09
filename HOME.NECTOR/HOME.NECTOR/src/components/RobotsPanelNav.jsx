@@ -1,7 +1,7 @@
 import "../styles/RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
 
-const RobotsPanelNav = ({ onSelectRobot }) => {
+const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
   const [detectedRobotsList, setDetectedRobotsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
@@ -9,12 +9,6 @@ const RobotsPanelNav = ({ onSelectRobot }) => {
 
   const devices_list_broadcast_server_url = import.meta.env
     .VITE_NODEJS_BROADCAST_SCANNING_SERVER;
-
-  const testRobotData = [
-    {
-      Device_Name: "SRV",
-    },
-  ];
 
   const getDevicesListFromBroadcast = (url, message) => {
     return fetch(url, {
@@ -84,6 +78,7 @@ const RobotsPanelNav = ({ onSelectRobot }) => {
 
   const connectToRobot = () => {
     console.log("BTN1 ACTIVE");
+    onRobotConnectClick();
   };
 
   const cancelSelectedRobot = () => {

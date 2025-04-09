@@ -2,7 +2,7 @@ import "../styles/RobotsPanelMainStyle.css";
 import { useEffect, useRef, useState } from "react";
 import DeviceModel from "./DeviceModel";
 
-const RobotsPanelMain = ({ selectedRobot }) => {
+const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
   const [show3DModel, setShow3DModel] = useState(false);
   const [robotDevicePath, setrobotDevicePath] = useState("");
 
@@ -10,6 +10,8 @@ const RobotsPanelMain = ({ selectedRobot }) => {
   const isHorizontalLidarDetected = useRef(false);
   const isMicrophoneDetected = useRef(false);
   const isMicrophoneEnabled = useRef(false);
+
+  const robotConnection = useRef(null);
 
   useEffect(() => {
     console.log(selectedRobot);
@@ -21,6 +23,33 @@ const RobotsPanelMain = ({ selectedRobot }) => {
     }
   }, [selectedRobot]);
 
+  const sendMessageToRobot = (message) => {
+    if(robotConnection.current){
+      robotConnection.current.send(message);
+      console.log("Message has been sended to robot");
+    }
+    else console.log("Robot connection is closed and cannot receive message");
+  }
+
+  const handleRobotMessage = (message) => {
+
+  }
+
+  const connectedToRobot = () => {
+    const robot_conn_url = `ws://${selectedRobot.IP_Address}:${selectedRobot.Websocket_Port}`;
+    robotConnection.current = new WebSocket(robot_conn_url);
+
+    robotConnection.current.onopen = () => console.log(`Robot connection established: ${selectedRobot.IP_Address}`);
+    robotConnection.current.onmessage = (event) => handleRobotMessage(event);
+    robotConnection.current.onerror = (err) => console.log(`Robot connection has error: ${err}`);
+    robotConnection.current.onclose = () => console.log("Robot connection closed");
+  }
+
+  useEffect(() => {
+    console.log("Connecting to robot in useEffect");
+    if(connectedToRobotClicked) connectedToRobot();
+  }, []);
+
   const createRobotBtn = (robotFunction) => {
     if (robotFunction === "BASIC_SPIDER_MOVES") {
       return (
@@ -29,31 +58,37 @@ const RobotsPanelMain = ({ selectedRobot }) => {
             src="assets/icons/MOVE_FORWARD.png"
             className="robotBtn"
             title="MOVE_FORWARD"
+            onClick={() => sendMessageToRobot("MOVE_FORWARD")}
           />
           <img
             src="assets/icons/MOVE_BACKWARD.png"
             className="robotBtn"
             title="MOVE_BACKWARD"
+            onClick={() => sendMessageToRobot("MOVE_BACKWARD")}
           />
           <img
             src="assets/icons/MOVE_LEFT.png"
             className="robotBtn"
             title="MOVE_LEFT"
+            onClick={() => sendMessageToRobot("MOVE_LEFT")}
           />
           <img
             src="assets/icons/MOVE_RIGHT.png"
             className="robotBtn"
             title="MOVE_RIGHT"
+            onClick={() => sendMessageToRobot("MOVE_RIGHT")}
           />
           <img
             src="assets/icons/ROTATE_LEFT.png"
             className="robotBtn"
             title="ROTATE_LEFT"
+            onClick={() => sendMessageToRobot("ROTATE_LEFT")}
           />
           <img
             src="assets/icons/ROTATE_RIGHT.png"
             className="robotBtn"
             title="ROTATE_RIGHT"
+            onClick={() => sendMessageToRobot("ROTATE_RIGHT")}
           />
         </>
       );

@@ -5,6 +5,11 @@ import { useState } from "react";
 
 const RobotsPanel = () => {
   const [selectedRobot, setSelectedRobot] = useState(null);
+  const [connectRobotClicked, setConnectRobotClicked] = useState(false);
+
+  const connectToRobotClick = () => {
+    setConnectRobotClicked(!connectRobotClicked);
+  }
 
   const selectRobot = (robotDevice) => {
     console.log(robotDevice);
@@ -17,10 +22,11 @@ const RobotsPanel = () => {
 
   return (
     <div className="robotsPanel">
-      <RobotsPanelNav onSelectRobot={selectRobot} />
+      <RobotsPanelNav onSelectRobot={selectRobot} onRobotConnectClick={connectToRobotClick}/>
       <RobotsPanelMain
         onCancelSelection={cancelSelection}
         selectedRobot={selectedRobot}
+        connectedToRobotClicked = {connectRobotClicked}
       />
     </div>
   );

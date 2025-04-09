@@ -3,5 +3,12 @@
   height: 100vh;
   background-image: url("backgrounds/robotsPanelBackground.jpg");
   background-size: cover;
-  overflow-y: hidden;
+  overflow: hidden;
+}
+
+@media (max-width: 800px){
+  .robotsPanel{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }

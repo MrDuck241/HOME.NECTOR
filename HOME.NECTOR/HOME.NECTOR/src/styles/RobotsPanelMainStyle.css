@@ -1,5 +1,5 @@
 .robotsPanelMain{
-  height: 80%;
+  height: 80vh;
   width: 100vw;
   margin: 0 auto;
   margin-top: 6px;
@@ -82,4 +82,10 @@
 .robotBtn{
   width: 60px;
   height: 60px;
+}
+
+@media (max-width: 800px){
+  .robotsPanelMain{
+    width: 99vw;
+  }
 }

@@ -89,11 +89,11 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
     <div className="robotsPanelNav">
       <div className="robotsHolder">
         {loading ? (
-          <p className="cyanText text-lg italic font-semibold pl-[30px]">
+          <p className="robotsHolderCyanInfo">
             Loading...
           </p>
         ) : errorMsg ? (
-          <div className="text-red-600 text-lg italic font-semibold pl-[30px]">
+          <div className="robotsHolderErrorArea">
             {errorMsg}
           </div>
         ) : detectedRobotsList && detectedRobotsList.length > 0 ? (
@@ -101,7 +101,7 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
             renderRobotBox(element, index)
           )
         ) : (
-          <p className="cyanText pl-[30px]">No robots available</p>
+          <p className="robotsHolderCyanInfo">No robots available</p>
         )}
       </div>
       <div className="robotsNavBtnsHolder">
@@ -125,16 +125,16 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
             Search Devices
           </button>
         </div>
-        <div className="w-[40%] h-[100%] flex flex-col justify-evenly items-center">
+        <div className="robotConnectionBtnsHolder">
           <button
-            className="w-[90%] h-[30%] cyanHoverBtn cyanBtn"
+            className="robotConnectionBtn cyanHoverBtn cyanBtn"
             disabled={!isRobotSelected}
             onClick={connectToRobot}
           >
             Connect To Selected Robot
           </button>
           <button
-            className="w-[90%] h-[30%] cyanHoverBtn cyanBtn"
+            className="robotConnectionBtn cyanHoverBtn cyanBtn"
             disabled={!isRobotSelected}
             onClick={cancelSelectedRobot}
           >

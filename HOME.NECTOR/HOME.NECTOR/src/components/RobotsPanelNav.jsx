@@ -77,12 +77,11 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
   };
 
   const connectToRobot = () => {
-    console.log("BTN1 ACTIVE");
     onRobotConnectClick();
   };
 
   const cancelSelectedRobot = () => {
-    console.log("BTN2 ACTIVE");
+    console.log("cancelSelectedRobot clicked");
   };
 
   return (

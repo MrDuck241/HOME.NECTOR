@@ -3,7 +3,7 @@ import "../styles/CamerasPanelMainStyle.css";
 
 const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
   const imageRefs = useRef({});
-  const socketsRef = useRef({}); // 🔹 Użycie useRef zamiast zwykłego obiektu
+  const socketsRef = useRef({});
 
   useEffect(() => {
     devicesList.forEach((camera) => {
@@ -28,7 +28,7 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
       ws.onclose = () =>
         console.log(`Connection closed with camera: ${camera.IP_Address}`);
 
-      socketsRef.current[camera.id] = ws; // 🔹 Przechowujemy sockety w useRef
+      socketsRef.current[camera.id] = ws;
     });
 
     return () => {
@@ -37,7 +37,7 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
   }, [devicesList]);
 
   const sendMessageToDevice = (device_id, message) => {
-    const socket = socketsRef.current[device_id]; // 🔹 Pobieramy socket z useRef
+    const socket = socketsRef.current[device_id];
     if (socket) {
       socket.send(message);
     } else {

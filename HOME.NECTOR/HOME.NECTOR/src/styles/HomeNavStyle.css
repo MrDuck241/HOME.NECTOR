@@ -13,7 +13,7 @@
     src: url("fonts/Rethink_Sans/static/RethinkSans-Bold.ttf") format('truetype');
 }
 
-nav{
+.homeNav{
     width: 100vw;
     height: 100px;
     background-color: rgba(0, 0, 0);
@@ -69,4 +69,24 @@ nav{
 
 .navButton:hover::after {
     transform: scale(1, 1);
+}
+
+@media (max-width: 1200px){
+    .homeNav{
+        flex-direction: column;
+    }
+    .navButtonsHolder{
+        width: 100%;
+        gap: 1%;
+        padding-bottom: 6px;
+    }
+    .navButton{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 1400px){
+    .navButton{
+        font-size: 20px;
+    }
 }

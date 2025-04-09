@@ -21,7 +21,7 @@ const HomeNav = () => {
   };
 
   return (
-    <nav>
+    <div className="homeNav">
       <div className="homeTitle">
         <span style={{ color: "white" }}>HOME.</span>
         NECTOR
@@ -33,7 +33,7 @@ const HomeNav = () => {
         {navButton("ALTERNATIVE VIEW", "/alternative_view")}
         {navButton("LEARN MORE", "/learn_more")}
       </div>
-    </nav>
+    </div>
   );
 };
 

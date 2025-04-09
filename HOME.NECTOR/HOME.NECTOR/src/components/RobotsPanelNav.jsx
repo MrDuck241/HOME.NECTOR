@@ -89,11 +89,11 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
     <div className="robotsPanelNav">
       <div className="robotsHolder">
         {loading ? (
-          <p className="text-cyan-400 text-lg italic font-semibold">
+          <p className="cyanText text-lg italic font-semibold pl-[30px]">
             Loading...
           </p>
         ) : errorMsg ? (
-          <div className="text-cyan-400 text-lg italic font-semibold">
+          <div className="text-red-600 text-lg italic font-semibold pl-[30px]">
             {errorMsg}
           </div>
         ) : detectedRobotsList && detectedRobotsList.length > 0 ? (
@@ -101,19 +101,19 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
             renderRobotBox(element, index)
           )
         ) : (
-          <p>No robots available</p>
+          <p className="cyanText pl-[30px]">No robots available</p>
         )}
       </div>
       <div className="robotsNavBtnsHolder">
         <div className="w-[40%] h-[100%] flex flex-col justify-evenly items-center">
           <div>
             <div className="flex items-center gap-[5px]">
-              <span className="text-cyan-400">Get Server List</span>
+              <span className="cyanText">Get Server List</span>
               <input type="checkbox" />
               <button type="button" className="infoBtn" />
             </div>
             <div className="flex items-center gap-[5px]">
-              <span className="text-cyan-400">Get Broadcast List</span>
+              <span className="cyanText">Get Broadcast List</span>
               <input type="checkbox" />
               <button type="button" className="infoBtn" />
             </div>

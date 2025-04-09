@@ -25,7 +25,7 @@
 }
 
 .robotsHolder{
-  background-color: rgba(59, 59, 59, 0.585);
+  background-color: rgba(15, 15, 15, 0.736);
   flex: 3;
   border-radius: 13px;
   overflow-x: auto;
@@ -101,4 +101,8 @@
 .menuBtn:hover{
   transform: scale(1.15);
   box-shadow: 0px 0px 14px cyan;
+}
+
+.cyanText{
+  color: cyan;
 }

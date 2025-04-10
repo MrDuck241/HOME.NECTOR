@@ -144,9 +144,9 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
             <DeviceModel path={robotDevicePath} />
           </div>
         ) : (
-          <img className="robotCameraView" />
+          <img className="robotCameraView" alt="robot camera view"/>
         )}
-        <div className="w-[96%] h-[20%] flex justify-evenly items-center">
+        <div className="cameraOr3DModelBtnsHolder">
           <button
             type="button"
             className="modelOrViewBtn cyanHoverBtn"

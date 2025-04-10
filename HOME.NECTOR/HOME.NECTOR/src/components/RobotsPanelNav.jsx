@@ -1,7 +1,7 @@
 import "../styles/RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
 
-const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
+const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   const [detectedRobotsList, setDetectedRobotsList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState("");
@@ -9,6 +9,16 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
 
   const devices_list_broadcast_server_url = import.meta.env
     .VITE_NODEJS_BROADCAST_SCANNING_SERVER;
+
+  const transformDevicesList = (robotsList) => {
+    const transformedRobotList = robotsList.map((obj, id) => ({
+      ...obj,
+      Id: id,
+      Device_Name: obj.Device_Model + "-" + id,
+      Data_Source: "broadcastServer",
+    }));
+    return transformedRobotList;
+  }
 
   const getDevicesListFromBroadcast = (url, message) => {
     return fetch(url, {
@@ -25,15 +35,8 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
         return response.json();
       })
       .then((data) => {
-        const transformedDeviceList = data.devices.map((obj, id) => ({
-          ...obj,
-          id: id,
-          Device_Name: obj.Device_Model + "-" + id,
-          Data_Source: "broadcastServer",
-        }));
-        console.log(transformedDeviceList);
         setLoading(false);
-        return transformedDeviceList;
+        return transformDevicesList(data.devices);
       })
       .catch(() => {
         setErrorMsg("Failed to scan devices with broadcast");
@@ -64,6 +67,15 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
     setIsRobotSelected(true);
   };
 
+  const connectToRobotBtnHandler = () => {
+    isRobotConnectionConfirmed(true);
+  };
+
+  const cancelRobotBtnHandler = () => {
+    isRobotConnectionConfirmed(false);
+  };
+
+  /* renderRobotBox is box holding each detected robot in network */
   const renderRobotBox = (element, index) => {
     return (
       <button
@@ -76,19 +88,11 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
     );
   };
 
-  const connectToRobot = () => {
-    onRobotConnectClick(true);
-  };
-
-  const cancelSelectedRobot = () => {
-    console.log("cancelSelectedRobot clicked");
-  };
-
   return (
     <div className="robotsPanelNav">
       <div className="robotsHolder">
         {loading ? (
-          <p className="robotsHolderCyanInfo">Loading...</p>
+          <span className="robotsHolderCyanInfo">Loading...</span>
         ) : errorMsg ? (
           <div className="robotsHolderErrorArea">{errorMsg}</div>
         ) : detectedRobotsList && detectedRobotsList.length > 0 ? (
@@ -96,7 +100,7 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
             renderRobotBox(element, index)
           )
         ) : (
-          <p className="robotsHolderCyanInfo">No robots available</p>
+          <span className="robotsHolderCyanInfo">No robots available</span>
         )}
       </div>
       <div className="robotsNavBtnsHolder">
@@ -115,22 +119,22 @@ const RobotsPanelNav = ({ onSelectRobot, onRobotConnectClick }) => {
           </div>
           <button
             type="button"
-            className="searchDevicesBtn cyanHoverBtn cyanBtn"
+            className="searchDevicesBtn cyanBtn"
           >
             Search Devices
           </button>
         </div>
         <div className="robotConnectionBtnsHolder">
           <button
-            className="robotConnectionBtn cyanHoverBtn cyanBtn"
-            onClick={() => connectToRobot()}
+            className="robotConnectionBtn cyanBtn"
+            onClick={() => connectToRobotBtnHandler()}
           >
             Connect To Selected Robot
           </button>
           <button
-            className="robotConnectionBtn cyanHoverBtn cyanBtn"
+            className="robotConnectionBtn cyanBtn"
             disabled={!isRobotSelected}
-            onClick={cancelSelectedRobot}
+            onClick={() => cancelRobotBtnHandler()}
           >
             Cancel Selected Robot
           </button>

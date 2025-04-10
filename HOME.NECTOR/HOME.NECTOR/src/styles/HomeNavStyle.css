@@ -71,7 +71,13 @@
     transform: scale(1, 1);
 }
 
-@media (max-width: 1200px){
+@media (max-width: 1400px){
+    .navButton{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1100px){
     .homeNav{
         flex-direction: column;
     }
@@ -81,12 +87,27 @@
         padding-bottom: 6px;
     }
     .navButton{
-        font-size: 12px;
+        font-size: 14px;
     }
 }
 
-@media (max-width: 1400px){
+@media (max-width: 800px){
+    .homeNav{
+        flex-direction: column;
+    }
+    .navButtonsHolder{
+        width: 100%;
+        gap: 1%;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+    }
     .navButton{
-        font-size: 20px;
+        width: 30%;
+        height: 30px;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+    .navButton::after{
+        height: 0.12rem;
     }
 }

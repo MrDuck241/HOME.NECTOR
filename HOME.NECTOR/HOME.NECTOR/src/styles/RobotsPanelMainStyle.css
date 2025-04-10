@@ -42,14 +42,15 @@
 
 .robotCameraView{
   object-fit: cover;
-  background-color: rgba(128, 15, 15, 0.734);
+  background-color: rgba(43, 39, 39, 0.734);
+  text-align: center;
 }
 
 .modelOrViewBtn{
-  width: 38%;
-  height: 45%;
+  width: 35%;
+  height: 42%;
   border: 2px solid lightgray;
-  color: cyan;
+  color: rgba(0, 255, 255, 0.725);
   background-color: black;
   border-radius: 8px;
 }

@@ -16,7 +16,8 @@
 .robotsPanelNav{
   width: 100vw;
   height: 20vh;
-  background-color: rgba(21, 21, 21, 0.616);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
   border-bottom: 2px solid lightgray;
   display: flex;
   justify-content: space-evenly;
@@ -27,7 +28,6 @@
 .robotsHolder{
   height: 100%;
   flex: 3;
-  background-color: rgba(15, 15, 15, 0.736);
   border: 3px solid lightgray;
   border-radius: 12px;
   overflow-x: auto;
@@ -56,7 +56,7 @@
 .robotsNavBtnsHolder{
   height: 100%;
   flex: 2;
-  background-color: rgba(15, 15, 15, 0.736);
+  background-color: rgba(0, 0, 0, 0.336);
   border: 3px solid lightgray;
   border-radius: 12px;
   display: flex;
@@ -68,14 +68,8 @@
   height: 30%;
 }
 
-.searchDevicesBtn{
-  width: 65%;
-  height: 35%;
-  text-align: center;
-}
-
 .cyanText{
-  color: cyan;
+  color: rgba(0, 255, 255, 0.725);
   font-size: 15px;
 }
 
@@ -83,9 +77,9 @@
   width: 90%;
   height: 30%;
   background-color: black;
-  border: 2px solid cyan;
+  border: 2px solid rgba(0, 255, 255, 0.725);
   border-radius: 12px;
-  color: cyan;
+  color: rgba(0, 255, 255, 0.725);
   font-size: 15px;
 }
 
@@ -95,17 +89,23 @@
   scale: 1.05;
 }
 
+.searchDevicesBtn{
+  width: 80%;
+  height: 30%;
+  text-align: center;
+}
+
 .infoBtn{
   width: 12px;
   height: 12px;
-  background-image: url("assets/icons/infoBtn.png");
+  background-image: url("assets/icons/info-btn-icon.png");
   background-size: cover;
 }
 
 .menuBtn{
   width: 55px;
   height: 55px;
-  background-image: url("assets/icons/expandableMenu.png");
+  background-image: url("assets/icons/expandable-menu-icon.png");
   background-size: cover;
   border-radius: 8px;
   overflow: hidden;

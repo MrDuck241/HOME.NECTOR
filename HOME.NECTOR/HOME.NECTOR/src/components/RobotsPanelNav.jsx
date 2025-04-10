@@ -88,6 +88,10 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
     );
   };
 
+  const renderInfoBtn = () => {
+    return <button type="button" className="infoBtn" title="Learn more"/>
+  }
+
   return (
     <div className="robotsPanelNav">
       <div className="robotsHolder">
@@ -109,12 +113,12 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
             <div className="flex items-center gap-[5px]">
               <span className="cyanText">Get Server List</span>
               <input type="checkbox" />
-              <button type="button" className="infoBtn" />
+              {renderInfoBtn()}
             </div>
             <div className="flex items-center gap-[5px]">
               <span className="cyanText">Get Broadcast List</span>
               <input type="checkbox" />
-              <button type="button" className="infoBtn" />
+              {renderInfoBtn()}
             </div>
           </div>
           <button

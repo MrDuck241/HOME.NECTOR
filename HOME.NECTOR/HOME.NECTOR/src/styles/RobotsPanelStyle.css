@@ -1,7 +1,7 @@
 .robotsPanel {
   width: 100vw;
   height: 100vh;
-  background-image: url("backgrounds/robotsPanelBackground.jpg");
+  background-image: url("backgrounds/robots-panel-background.jpg");
   background-size: cover;
   overflow: hidden;
 }

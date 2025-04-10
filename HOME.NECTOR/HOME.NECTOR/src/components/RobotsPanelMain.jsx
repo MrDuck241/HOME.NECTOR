@@ -144,13 +144,14 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
             <DeviceModel path={robotDevicePath} />
           </div>
         ) : (
-          <img className="robotCameraView" alt="robot camera view"/>
+          <img className="robotCameraView" alt="robot camera view" src="assets/no-camera-signal.jpg"/>
         )}
         <div className="cameraOr3DModelBtnsHolder">
           <button
             type="button"
             className="modelOrViewBtn cyanHoverBtn"
             onClick={() => setShow3DModel(true)}
+            title="Show Robot 3D Model"
           >
             Robot 3D Model
           </button>
@@ -159,8 +160,9 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
             type="button"
             className="modelOrViewBtn cyanHoverBtn"
             onClick={() => setShow3DModel(false)}
+            title="Show Robot Camera View"
           >
-            Robot View
+            Robot Camera
           </button>
         </div>
       </div>

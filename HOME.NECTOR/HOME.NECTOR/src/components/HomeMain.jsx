@@ -3,20 +3,12 @@ import { useState } from "react";
 import "../styles/HomeMainStyle.css";
 
 const HomeMain = () => {
-  const [showPopupText, setShowPopupText] = useState(true);
+  const [showHomePopup, setShowHomePopup] = useState(true);
 
   return (
-    <div className="main">
-      <div
-        className={`homePagePopup 
-                ${
-                  showPopupText
-                    ? "h-[50%]"
-                    : "h-[20%] pt-[30px] overflow-y-hidden justify-evenly"
-                }`}
-      >
-        {showPopupText && (
-          <div className="homePagePopupTextHolder">
+    <div className="homeMain">
+      <div className={showHomePopup ? 'homePopup' : 'hiddenHomePopup'}>
+        {showHomePopup ? <><div className="homePopupTextHolder">
             HOME.NECTOR webiste is control panel for private IoT used in your
             home. This website allows you to control deviced from your network.
             You can collect data from sensors, display it and store to database.
@@ -24,23 +16,27 @@ const HomeMain = () => {
             if you are thousands meters away. Robots also can be controled from
             this website. Enjoy and feel the future at home.
           </div>
-        )}
-        <div className="homePagePopupBtnHolder">
+        <div className="homePopupBtnsHolder">
           <button
             type="button"
-            className="homePagePopupBtn"
-            onClick={() => setShowPopupText(true)}
+            className="homePopupBtn"
           >
             Learn More
           </button>
           <button
             type="button"
-            className="homePagePopupBtn"
-            onClick={() => setShowPopupText(false)}
+            className="homePopupBtn"
+            onClick={() => setShowHomePopup(false)}
           >
             Hide Description
           </button>
-        </div>
+        </div></> : 
+        <button 
+          type="button" 
+          className="showPopupBtn" 
+          onClick={() => setShowHomePopup(true)}>
+            Learn More
+        </button>}
       </div>
     </div>
   );

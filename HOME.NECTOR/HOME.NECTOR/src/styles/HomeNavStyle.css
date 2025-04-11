@@ -45,7 +45,7 @@
 .navButton{
     background-color: transparent;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     text-decoration: none;
     font-family: 'BtnsStyle';
     letter-spacing: 1px;
@@ -71,9 +71,9 @@
     transform: scale(1, 1);
 }
 
-@media (max-width: 1400px){
+@media (max-width: 1300px){
     .navButton{
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 

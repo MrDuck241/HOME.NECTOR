@@ -32,6 +32,7 @@ const HomeNav = () => {
         {navButton("DEVICES", "/devices")}
         {navButton("ALTERNATIVE VIEW", "/alternative_view")}
         {navButton("LEARN MORE", "/learn_more")}
+        {navButton("LANGUAGE", "/learn_more")}
       </div>
     </div>
   );

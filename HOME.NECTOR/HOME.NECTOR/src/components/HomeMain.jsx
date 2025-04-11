@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "../styles/HomeMainStyle.css";
+import "../components_styles/HomeMainStyle.css";
 
 const HomeMain = () => {
   const [showHomePopup, setShowHomePopup] = useState(true);

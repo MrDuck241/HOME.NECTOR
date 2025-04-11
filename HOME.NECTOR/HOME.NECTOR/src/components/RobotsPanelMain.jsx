@@ -1,4 +1,4 @@
-import "../styles/RobotsPanelMainStyle.css";
+import "../components_styles/RobotsPanelMainStyle.css";
 import { useEffect, useRef, useState } from "react";
 import DeviceModel from "./DeviceModel";
 

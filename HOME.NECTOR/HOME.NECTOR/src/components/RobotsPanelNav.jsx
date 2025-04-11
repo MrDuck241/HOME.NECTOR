@@ -1,4 +1,4 @@
-import "../styles/RobotsPanelNavStyle.css";
+import "../components_styles/RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
 
 const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {

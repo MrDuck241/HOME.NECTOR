@@ -1,4 +1,4 @@
-import "../styles/RobotsPanelStyle.css";
+import "../components_styles/RobotsPanelStyle.css";
 import RobotsPanelMain from "./RobotsPanelMain";
 import RobotsPanelNav from "./RobotsPanelNav";
 import { useState } from "react";

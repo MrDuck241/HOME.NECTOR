@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import "../styles/CamerasPanelNavStyle.css";
+import "../components_styles/CamerasPanelNavStyle.css";
 
 const CamerasPanelNav = ({
   onSelectCamerasGridOption,
@@ -265,7 +265,7 @@ const CamerasPanelNav = ({
               </div>
             </div>
             <button
-              className="searchDevicesBtn cyanHoverBtn"
+              className="cyanBtn cyanHoverBtn"
               onClick={() => searchDevices()}
             >
               Search Devices
@@ -274,18 +274,18 @@ const CamerasPanelNav = ({
           <div className="navControlBtnsSubHolder2">
             <div className="w-[65%] h-[100%] flex flex-col items-center justify-evenly">
               <button
-                className="w-[96%] text-cyan-400 text-sm font-semibold border-solid border-[2px] border-gray-400 rounded-[8px] p-[3px] cyanHoverBtn"
+                className="cyanBtn"
                 onClick={() => changeGridOption()}
               >
                 Change cameras views grid
               </button>
               <button
-                className="w-[96%] text-cyan-400 text-sm font-semibold border-solid border-[2px] border-gray-400 rounded-[8px] p-[3px] cyanHoverBtn"
+                className="cyanBtn"
                 onClick={() => connectToCameras()}
               >
                 Connect to all devices
               </button>
-              <button className="w-[96%] text-cyan-400 text-sm font-semibold border-solid border-[2px] border-gray-400 rounded-[8px] p-[3px] cyanHoverBtn">
+              <button className="cyanBtn">
                 Disconnect from all devices
               </button>
             </div>

@@ -1,4 +1,4 @@
-import "../styles/DevicesPanelMainStyle.css";
+import "../components_styles/DevicesPanelMainStyle.css";
 import { useState, useEffect, useRef, useMemo } from "react";
 import DeviceModel from "./DeviceModel";
 

@@ -1,0 +1,29 @@
+.cyanBtn{
+    width: 90%;
+    height: 25%;
+    background-color: black;
+    border: 2px solid rgba(0, 255, 255, 0.725);
+    border-radius: 12px;
+    color: rgba(0, 255, 255, 0.725);
+    font-size: 15px;
+}
+
+.infoBtn{
+    width: 12px;
+    height: 12px;
+    background-image: url("assets/icons/info-btn-icon.png");
+    background-size: cover;
+}
+
+.expandableBtn{
+    width: 50px;
+    height: 50px;
+    background-image: url("assets/icons/expandable-menu-icon.png");
+    background-size: cover;
+}
+
+.cyanHoverEffect:hover{
+    transition: 0.4s;
+    box-shadow: 0 0 3px #16ecff, 0 0 10px #16ecff, 0 0 20px #16ecff;
+    scale: 1.05;
+}

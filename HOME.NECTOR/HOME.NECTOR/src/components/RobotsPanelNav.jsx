@@ -1,5 +1,6 @@
 import "../components_styles/RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
+import { CyanBtn, InfoBtn, ExpandableMenu } from "../reusable_elements/DefaultButtons"
 
 const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   const [detectedRobotsList, setDetectedRobotsList] = useState([]);
@@ -121,12 +122,7 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
               {renderInfoBtn()}
             </div>
           </div>
-          <button
-            type="button"
-            className="searchDevicesBtn cyanBtn"
-          >
-            Search Devices
-          </button>
+          <CyanBtn text = {"Search Devices"} onClickFunction={null}/>
         </div>
         <div className="robotConnectionBtnsHolder">
           <button
@@ -144,7 +140,7 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
           </button>
         </div>
         <div className="flex flex-col items-center justify-evenly w-[20%]">
-          <button className="menuBtn" />
+          <ExpandableMenu onClickFunction={null}/>
         </div>
       </div>
     </div>

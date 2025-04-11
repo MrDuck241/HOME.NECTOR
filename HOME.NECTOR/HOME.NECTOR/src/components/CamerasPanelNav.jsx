@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { CyanBtn, InfoBtn, ExpandableMenu } from "../reusable_elements/DefaultButtons"
 import "../components_styles/CamerasPanelNavStyle.css";
 
 const CamerasPanelNav = ({
@@ -233,7 +234,7 @@ const CamerasPanelNav = ({
         <div className="navControlBtnsHolder">
           <div className="navControlBtnsSubHolder1">
             <div>
-              <div className="text-cyan-400 text-md font-semibold flex items-center">
+              <div className="text-cyan-400 text-md font-semibold flex items-center gap-[5px]">
                 Get Server List
                 <input
                   checked={isGetStorageServerList}
@@ -241,14 +242,10 @@ const CamerasPanelNav = ({
                     setIsGetStorageServerList(!isGetStorageServerList)
                   }
                   type="checkbox"
-                  className="ml-[6px]"
                 />
-                <button
-                  type="button"
-                  className="w-[12px] h-[12px] bg-red-500 ml-[6px] infoBtn"
-                />
+                <InfoBtn onClickFunction={null}/>
               </div>
-              <div className="text-cyan-400 text-md font-semibold flex items-center">
+              <div className="text-cyan-400 text-md font-semibold flex items-center gap-[5px]">
                 Get Broadcast List
                 <input
                   checked={isGetBroadcastServerList}
@@ -256,41 +253,20 @@ const CamerasPanelNav = ({
                     setIsGetBroadcastServerList(!isGetBroadcastServerList)
                   }
                   type="checkbox"
-                  className="ml-[6px]"
                 />
-                <button
-                  type="button"
-                  className="w-[12px] h-[12px] bg-red-500 ml-[6px] infoBtn"
-                />
+                <InfoBtn onClickFunction={null}/>
               </div>
             </div>
-            <button
-              className="cyanBtn cyanHoverBtn"
-              onClick={() => searchDevices()}
-            >
-              Search Devices
-            </button>
+            <CyanBtn text={"Search Devices"} onClickFunction={searchDevices}/>
           </div>
           <div className="navControlBtnsSubHolder2">
             <div className="w-[65%] h-[100%] flex flex-col items-center justify-evenly">
-              <button
-                className="cyanBtn"
-                onClick={() => changeGridOption()}
-              >
-                Change cameras views grid
-              </button>
-              <button
-                className="cyanBtn"
-                onClick={() => connectToCameras()}
-              >
-                Connect to all devices
-              </button>
-              <button className="cyanBtn">
-                Disconnect from all devices
-              </button>
+              <CyanBtn text={"Change cameras views grid"} onClickFunction={changeGridOption}/>
+              <CyanBtn text={"Connect to all devices"} onClickFunction={connectToCameras}/>
+              <CyanBtn text={"Disconnect from all devices"} onClickFunction={changeGridOption}/>
             </div>
             <div className="w-[35%] h-[100%] flex flex-col items-center justify-evenly">
-              <button className="expandableMenu"></button>
+              <ExpandableMenu onClickFunction={null}/>
               <button className="devicesListInfoBtn"></button>
             </div>
           </div>

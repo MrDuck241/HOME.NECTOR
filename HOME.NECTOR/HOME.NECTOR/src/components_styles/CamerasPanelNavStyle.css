@@ -111,7 +111,7 @@
   scale: 1.05;
 }
 
-.expandableMenu, .devicesListInfoBtn{
+.devicesListInfoBtn{
   width: 55px;
   height: 55px;
   background-image: url("assets/icons/expandable-menu-icon.png");
@@ -165,7 +165,6 @@
 .selectCamViewBtn:hover{
   color: black;
   background-color: cyan;
-  color: #050801; 
   box-shadow: 0 0 3px #16ecff,
               0 0 10px #16ecff,
               0 0 20px #16ecff;
@@ -228,16 +227,16 @@
 }
 
 @media (max-width: 800px) {
-  .robotsPanelNav{
+  .camerasPanelNav{
     width: 97vw;
     height: 200px;
     flex-direction: column;
   }
-  .robotsNavBtnsHolder{
+  .navControlBtnsHolder{
     height: 50%;  
     order: 1;
   }
-  .robotsHolder{
+  .cameraDevicesHolder{
     height: 50%;
     order: 2;
     padding: 0;

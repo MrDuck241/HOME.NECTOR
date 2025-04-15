@@ -1,16 +1,16 @@
 @font-face {
   font-family: "FuturisticFont";
-  src: url("fonts/Orbitron/Orbitron-VariableFont_wght.ttf") format("truetype");
+  src: url("/fonts/Orbitron/Orbitron-VariableFont_wght.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Normal";
-  src: url("fonts/Roboto/Roboto-Regular.ttf") format("truetype");
+  src: url("/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "BtnsStyle";
-  src: url("fonts/Rethink_Sans/static/RethinkSans-Bold.ttf") format("truetype");
+  src: url("/fonts/Rethink_Sans/static/RethinkSans-Bold.ttf") format("truetype");
 }
 
 .robotsPanelNav{

@@ -1,6 +1,6 @@
 @font-face {
     font-family: "FuturisticFont";
-    src: url("fonts/Orbitron/Orbitron-VariableFont_wght.ttf") format("truetype");
+    src: url("/fonts/Orbitron/Orbitron-VariableFont_wght.ttf") format("truetype");
   }
 
 .devicesPanelNav{

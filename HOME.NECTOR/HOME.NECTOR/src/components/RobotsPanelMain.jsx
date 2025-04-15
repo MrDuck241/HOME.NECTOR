@@ -46,6 +46,26 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
     } else console.log("Robot connection is closed and cannot receive message");
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "w" || event.key === "ArrowUp") {
+        sendMessageToRobot("MOVE_FORWARD");
+      } else if (event.key === "s" || event.key === "ArrowDown") {
+        sendMessageToRobot("MOVE_BACKWARD");
+      } else if (event.key === "d" || event.key === "ArrowRight") {
+        sendMessageToRobot("ROTATE_RIGHT");
+      } else if (event.key === "a" || event.key === "ArrowLeft") {
+        sendMessageToRobot("ROTATE_LEFT");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const handleRobotMessage = (message) => {};
 
   const createRobotBtn = (robotFunction) => {
@@ -53,43 +73,43 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
       return (
         <>
           <img
-            src="assets/icons/START_POSITION.jpg"
+            src="assets/icons/start-position-icon.jpg"
             className="robotBtn"
             title="START_POSITION"
             onClick={() => sendMessageToRobot("START_POSITION")}
           />
           <img
-            src="assets/icons/MOVE_FORWARD.png"
+            src="assets/icons/move-forward-icon.png"
             className="robotBtn"
             title="MOVE_FORWARD"
             onClick={() => sendMessageToRobot("MOVE_FORWARD")}
           />
           <img
-            src="assets/icons/MOVE_BACKWARD.png"
+            src="assets/icons/move-backward-icon.png"
             className="robotBtn"
             title="MOVE_BACKWARD"
             onClick={() => sendMessageToRobot("MOVE_BACKWARD")}
           />
           <img
-            src="assets/icons/MOVE_LEFT.png"
+            src="assets/icons/move-left-icon.png"
             className="robotBtn"
             title="MOVE_LEFT"
             onClick={() => sendMessageToRobot("MOVE_LEFT")}
           />
           <img
-            src="assets/icons/MOVE_RIGHT.png"
+            src="assets/icons/move-right-icon.png"
             className="robotBtn"
             title="MOVE_RIGHT"
             onClick={() => sendMessageToRobot("MOVE_RIGHT")}
           />
           <img
-            src="assets/icons/ROTATE_LEFT.png"
+            src="assets/icons/rotate-left-icon.png"
             className="robotBtn"
             title="ROTATE_LEFT"
             onClick={() => sendMessageToRobot("ROTATE_LEFT")}
           />
           <img
-            src="assets/icons/ROTATE_RIGHT.png"
+            src="assets/icons/rotate-right-icon.png"
             className="robotBtn"
             title="ROTATE_RIGHT"
             onClick={() => sendMessageToRobot("ROTATE_RIGHT")}
@@ -144,7 +164,11 @@ const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
             <DeviceModel path={robotDevicePath} />
           </div>
         ) : (
-          <img className="robotCameraView" alt="robot camera view" src="assets/no-camera-signal.jpg"/>
+          <img
+            className="robotCameraView"
+            alt="robot camera view"
+            src="assets/no-camera-signal.jpg"
+          />
         )}
         <div className="cameraOr3DModelBtnsHolder">
           <button

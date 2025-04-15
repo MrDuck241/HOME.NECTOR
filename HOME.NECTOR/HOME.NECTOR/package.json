@@ -1,6 +1,7 @@
 {
   "name": "home-nector",
   "private": true,
+  "homepage": "http://127.0.0.1/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

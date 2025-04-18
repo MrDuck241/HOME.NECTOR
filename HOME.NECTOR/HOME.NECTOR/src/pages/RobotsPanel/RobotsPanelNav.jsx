@@ -1,6 +1,10 @@
-import "../components_styles/RobotsPanelNavStyle.css";
+import "./RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
-import { CyanBtn, InfoBtn, ExpandableMenu } from "../reusable_elements/DefaultButtons"
+import {
+  CyanBtn,
+  InfoBtn,
+  ExpandableMenu,
+} from "../../components/buttons/Buttons";
 
 const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   const [detectedRobotsList, setDetectedRobotsList] = useState([]);
@@ -19,7 +23,7 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
       Data_Source: "broadcastServer",
     }));
     return transformedRobotList;
-  }
+  };
 
   const getDevicesListFromBroadcast = (url, message) => {
     return fetch(url, {
@@ -90,8 +94,8 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   };
 
   const renderInfoBtn = () => {
-    return <button type="button" className="infoBtn" title="Learn more"/>
-  }
+    return <button type="button" className="infoBtn" title="Learn more" />;
+  };
 
   return (
     <div className="robotsPanelNav">
@@ -122,7 +126,7 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
               {renderInfoBtn()}
             </div>
           </div>
-          <CyanBtn text = {"Search Devices"} onClickFunction={null}/>
+          <CyanBtn text={"Search Devices"} onClickFunction={null} />
         </div>
         <div className="robotConnectionBtnsHolder">
           <button
@@ -140,7 +144,7 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
           </button>
         </div>
         <div className="flex flex-col items-center justify-evenly w-[20%]">
-          <ExpandableMenu onClickFunction={null}/>
+          <ExpandableMenu onClickFunction={null} />
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import "../components_styles/CamerasPanelMainStyle.css";
+import "./CamerasPanelMainStyle.css";
 
 const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
   const imageRefs = useRef({});

@@ -1,6 +1,6 @@
 import HomeNav from "./HomeNav";
 import HomeMain from "./HomeMain";
-import "../components_styles/HomeStyle.css";
+import "./HomeStyle.css";
 
 const Home = () => {
   return (

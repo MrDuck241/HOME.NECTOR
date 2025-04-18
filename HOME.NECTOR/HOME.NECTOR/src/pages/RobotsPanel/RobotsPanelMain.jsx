@@ -1,6 +1,6 @@
-import "../components_styles/RobotsPanelMainStyle.css";
+import "./RobotsPanelMainStyle.css";
 import { useEffect, useRef, useState } from "react";
-import DeviceModel from "./DeviceModel";
+import DeviceModel from "../DeviceModel";
 
 const RobotsPanelMain = ({ selectedRobot, connectedToRobotClicked }) => {
   const [show3DModel, setShow3DModel] = useState(false);

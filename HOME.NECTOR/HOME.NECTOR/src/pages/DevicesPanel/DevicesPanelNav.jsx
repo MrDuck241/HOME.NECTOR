@@ -1,4 +1,4 @@
-import "../components_styles/DevicesPanelNavStyle.css";
+import "./DevicesPanelNavStyle.css";
 import { useEffect, useState } from "react";
 
 const DevicesPanelNav = ({ onSelectDevice }) => {

@@ -1,6 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { CyanBtn, InfoBtn, ExpandableMenu } from "../reusable_elements/DefaultButtons"
-import "../components_styles/CamerasPanelNavStyle.css";
+import {
+  CyanBtn,
+  InfoBtn,
+  ExpandableMenu,
+} from "../../components/buttons/Buttons";
+import "./CamerasPanelNavStyle.css";
 
 const CamerasPanelNav = ({
   onSelectCamerasGridOption,
@@ -243,7 +247,7 @@ const CamerasPanelNav = ({
                   }
                   type="checkbox"
                 />
-                <InfoBtn onClickFunction={null}/>
+                <InfoBtn onClickFunction={null} />
               </div>
               <div className="text-cyan-400 text-md font-semibold flex items-center gap-[5px]">
                 Get Broadcast List
@@ -254,19 +258,28 @@ const CamerasPanelNav = ({
                   }
                   type="checkbox"
                 />
-                <InfoBtn onClickFunction={null}/>
+                <InfoBtn onClickFunction={null} />
               </div>
             </div>
-            <CyanBtn text={"Search Devices"} onClickFunction={searchDevices}/>
+            <CyanBtn text={"Search Devices"} onClickFunction={searchDevices} />
           </div>
           <div className="navControlBtnsSubHolder2">
             <div className="w-[65%] h-[100%] flex flex-col items-center justify-evenly">
-              <CyanBtn text={"Change cameras views grid"} onClickFunction={changeGridOption}/>
-              <CyanBtn text={"Connect to all devices"} onClickFunction={connectToCameras}/>
-              <CyanBtn text={"Disconnect from all devices"} onClickFunction={changeGridOption}/>
+              <CyanBtn
+                text={"Change cameras views grid"}
+                onClickFunction={changeGridOption}
+              />
+              <CyanBtn
+                text={"Connect to all devices"}
+                onClickFunction={connectToCameras}
+              />
+              <CyanBtn
+                text={"Disconnect from all devices"}
+                onClickFunction={changeGridOption}
+              />
             </div>
             <div className="w-[35%] h-[100%] flex flex-col items-center justify-evenly">
-              <ExpandableMenu onClickFunction={null}/>
+              <ExpandableMenu onClickFunction={null} />
               <button className="devicesListInfoBtn"></button>
             </div>
           </div>

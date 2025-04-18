@@ -1,4 +1,4 @@
-import "../components_styles/CamerasPanelStyle.css";
+import "./CamerasPanelStyle.css";
 import CamerasPanelMain from "./CamerasPanelMain";
 import CamerasPanelNav from "./CamerasPanelNav";
 import { useState } from "react";

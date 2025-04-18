@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import "./HomeNavStyle.css";
+import "./HeaderStyle.css";
 
-const HomeNav = () => {
+export default function Header() {
   const navigate = useNavigate();
 
   const goToSubsite = (address) => {
@@ -21,21 +21,21 @@ const HomeNav = () => {
   };
 
   return (
-    <div className="homeNav">
-      <div className="homeTitle">
-        <span style={{ color: "white" }}>HOME.</span>
-        NECTOR
-      </div>
+    <header className="header">
+      <button type="button" onClick={() => goToSubsite("/")}>
+        <div className="headerTitle">
+          <span className="text-white">HOME.</span>
+          NECTOR
+        </div>
+      </button>
       <div className="navButtonsHolder">
         {navButton("CAMERAS", "/cameras")}
         {navButton("ROBOTS", "/robots")}
         {navButton("DEVICES", "/devices")}
         {navButton("ALTERNATIVE VIEW", "/alternative_view")}
         {navButton("LEARN MORE", "/learn_more")}
-        {navButton("LANGUAGE", "/learn_more")}
+        {navButton("SETTINGS", "/learn_more")}
       </div>
-    </div>
+    </header>
   );
-};
-
-export default HomeNav;
+}

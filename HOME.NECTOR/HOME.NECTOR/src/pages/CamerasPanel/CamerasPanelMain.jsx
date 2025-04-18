@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import "./CamerasPanelMainStyle.css";
 
 const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
@@ -65,11 +66,11 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
     }
   };
 
-  const renderDeviceView1 = (device, id) => {
-    console.log(device.Device_Functions);
+  const renderDeviceView = (device, id) => {
+    const elementKey = "cam_view_" + toString(id);
     return camerasGridOption == 1 || camerasGridOption == 2 ? (
       <img
-        key={id}
+        key={elementKey}
         ref={(el) => (imageRefs.current[id] = el)}
         className={camerasGridOption == 1 ? "deviceView1" : "deviceView2"}
       />
@@ -77,7 +78,7 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
       <div className="deviceViewWithBtns">
         <div className="flex flex-col justify-evenly h-[100%] w-[430px]">
           <img
-            key={id}
+            key={elementKey}
             ref={(el) => (imageRefs.current[id] = el)}
             className="deviceView3"
           />
@@ -101,7 +102,7 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
   };
 
   return (
-    <div className="main">
+    <div className="camerasPanelMain">
       {devicesList.length > 0 && (
         <div
           className={`camerasViewsScrollableArea ${
@@ -112,7 +113,7 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
               : "camerasViewsArea2xBtns"
           }`}
         >
-          {devicesList.map((device) => renderDeviceView1(device, device.id))}
+          {devicesList.map((device) => renderDeviceView(device, device.id))}
         </div>
       )}
     </div>
@@ -120,3 +121,8 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
 };
 
 export default CamerasPanelMain;
+
+CamerasPanelMain.propTypes = {
+  camerasGridOption: PropTypes.number.isRequired,
+  devicesList: PropTypes.array,
+};

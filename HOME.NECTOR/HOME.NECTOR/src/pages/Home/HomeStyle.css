@@ -1,7 +1,111 @@
-.home{
-    width: 100vw;
-    height: 100vh;
-    background-image: url('backgrounds/home-background.jpg');
-    background-size: cover;
-    overflow-y: hidden;
+.homeMain {
+  width: 100%;
+  height: 84vh;
+  background-image: url("backgrounds/background.jpg");
+  background-size: cover;
+  position: relative;
+  padding: 10px;
+}
+
+.homePopup {
+  width: 40%;
+  height: 60%;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 3px solid lightgray;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hiddenHomePopup{
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.hiddenHomePopup:hover{
+  scale: 1.1;
+}
+
+.showPopupBtn{
+  width: 100%;
+  height: 100%;
+  color: cyan;
+  font-weight: 600;
+  border: 3px solid lightgray;
+  border-radius: 12px;
+}
+
+.homePopupTextHolder {
+  width: 90%;
+  height: 68%;
+  color: cyan;
+  font-weight: 600;
+  padding: 2%;
+  overflow-y: auto;
+}
+
+.homePopupBtnsHolder {
+  width: 100%;
+  height: 26%;
+  border-top: 3px solid lightgray;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.homePopupBtn {
+  width: 30%;
+  height: 60%;
+  background-color: rgba(0, 0, 0, 0.736);
+  color: cyan;
+  font-weight: 600;
+  border: 3px solid lightgray;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.homePopupBtn:hover{
+  scale: 1.1;
+}
+
+@media (max-width: 1400px){
+  .homePopup {
+    width: 50%;
+    height: 50%;
+  }
+  .homePopupTextHolder{
+    font-size: 16px;
+  }
+  .homePopupBtn {
+    width: 40%;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1200px){
+  .homePopup {
+    width: 70%;
+  }
+}
+
+@media (max-width: 800px){
+  .homePopup {
+    width: 80%;
+    height: 60%;
+  }
+  .homePopupTextHolder{
+    font-size: 14px;
+  }
+  .homePopupBtn {
+    font-size: 12px;
+  }
 }

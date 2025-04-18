@@ -1,6 +1,6 @@
-.main {
-  width: 100vw;
-  height: 80vh;
+.camerasPanelMain {
+  width: 100%;
+  height: 82%;
   display: flex;
   justify-content: center;
   align-items: center;

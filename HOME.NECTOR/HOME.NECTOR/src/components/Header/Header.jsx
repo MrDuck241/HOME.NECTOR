@@ -1,7 +1,22 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./HeaderStyle.css";
 
 export default function Header() {
+  const [texts, setTexts] = useState(null);
+
+  useEffect(() => {
+    const lang = localStorage.getItem("lang") ?? "en";
+    console.log("LANG => ", lang);
+    fetch(`/locals/header-locals/${lang}-texts.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTexts(data);
+        console.log(data);
+      })
+      .catch((error) => console.log("Loading texts file error: ", error));
+  }, []);
+
   const navigate = useNavigate();
 
   const goToSubsite = (address) => {
@@ -29,12 +44,33 @@ export default function Header() {
         </div>
       </button>
       <div className="navButtonsHolder">
-        {navButton("CAMERAS", "/cameras")}
-        {navButton("ROBOTS", "/robots")}
-        {navButton("DEVICES", "/devices")}
-        {navButton("ALTERNATIVE VIEW", "/alternative_view")}
-        {navButton("LEARN MORE", "/learn_more")}
-        {navButton("SETTINGS", "/learn_more")}
+        {texts ? (
+          <>
+            {navButton(
+              texts.header_cameras_btn || "Text not found",
+              "/cameras"
+            )}
+            {navButton(texts.header_robots_btn || "Text not found", "/robots")}
+            {navButton(
+              texts.header_devices_btn || "Text not found",
+              "/devices"
+            )}
+            {navButton(
+              texts.header_alternative_view_btn || "Text not found",
+              "/alternative_view"
+            )}
+            {navButton(
+              texts.header_learnmore_btn || "Text not found",
+              "/learn_more"
+            )}
+            {navButton(
+              texts.header_settings_btn || "Text not found",
+              "/learn_more"
+            )}
+          </>
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </header>
   );

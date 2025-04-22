@@ -1,10 +1,18 @@
 import "./RobotsPanelNavStyle.css";
 import { useState, useEffect } from "react";
+
 import {
   CyanBtn,
   InfoBtn,
   ExpandableMenu,
-} from "../../components/buttons/Buttons";
+  DeviceTile,
+} from "../../../components/buttons/Buttons";
+import {
+  PanelNavDevicesHolder,
+  PanelNavBtnsHolder,
+  PanelNavHolder,
+} from "../../../components/holders/Holders";
+import { NoRobotsAvaiableMsg } from "../../../components/messages/Messages";
 
 const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   const [detectedRobotsList, setDetectedRobotsList] = useState([]);
@@ -13,7 +21,7 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   const [isRobotSelected, setIsRobotSelected] = useState(false);
 
   const devices_list_broadcast_server_url = import.meta.env
-    .VITE_NODEJS_BROADCAST_SCANNING_SERVER;
+    .VITE_BROADCAST_SCAN_URL;
 
   const transformDevicesList = (robotsList) => {
     const transformedRobotList = robotsList.map((obj, id) => ({
@@ -83,13 +91,9 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   /* renderRobotBox is box holding each detected robot in network */
   const renderRobotBox = (element, index) => {
     return (
-      <button
-        className="cameraDeviceBox"
-        key={index}
-        onClick={() => selectRobot(element)}
-      >
+      <DeviceTile key={index} onClickFunction={() => selectRobot(element)}>
         {element.Device_Name}
-      </button>
+      </DeviceTile>
     );
   };
 
@@ -98,8 +102,8 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
   };
 
   return (
-    <div className="robotsPanelNav">
-      <div className="robotsHolder">
+    <PanelNavHolder>
+      <PanelNavDevicesHolder>
         {loading ? (
           <span className="robotsHolderCyanInfo">Loading...</span>
         ) : errorMsg ? (
@@ -109,10 +113,10 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
             renderRobotBox(element, index)
           )
         ) : (
-          <span className="robotsHolderCyanInfo">No robots available</span>
+          <NoRobotsAvaiableMsg />
         )}
-      </div>
-      <div className="robotsNavBtnsHolder">
+      </PanelNavDevicesHolder>
+      <PanelNavBtnsHolder>
         <div className="w-[40%] h-[100%] flex flex-col justify-evenly items-center">
           <div>
             <div className="flex items-center gap-[5px]">
@@ -146,8 +150,8 @@ const RobotsPanelNav = ({ onSelectRobot, isRobotConnectionConfirmed }) => {
         <div className="flex flex-col items-center justify-evenly w-[20%]">
           <ExpandableMenu onClickFunction={null} />
         </div>
-      </div>
-    </div>
+      </PanelNavBtnsHolder>
+    </PanelNavHolder>
   );
 };
 

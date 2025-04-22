@@ -76,19 +76,25 @@ const CamerasPanelMain = ({ camerasGridOption, devicesList }) => {
       />
     ) : (
       <div className="deviceViewWithBtns">
-        <div className="flex flex-col justify-evenly h-[100%] w-[430px]">
+        <div className="flex flex-col justify-evenly h-[100%] w-[70%] p-[8px]">
           <img
             key={elementKey}
             ref={(el) => (imageRefs.current[id] = el)}
             className="deviceView3"
           />
-          <div className="h-[100px] flex flex-col overflow-y-auto cameraInfoHolder">
-            <span className="shrink-0">MAC Address: {device.MAC_Address}</span>
-            <span className="shrink-0">IP Address: {device.IP_Address}</span>
-            <span className="shrink-0">Location: Kitchen</span>
-            <span className="shrink-0">Device Type: {device.Device_Type} </span>
+          <div className="h-[20%] flex flex-col overflow-y-auto cameraInfoHolder">
             <span className="shrink-0">
-              Device Model: {device.Device_Model}
+              MAC Address: {device.MAC_Address ?? "Info not found"}
+            </span>
+            <span className="shrink-0">
+              IP Address: {device.IP_Address ?? "Info not found"}
+            </span>
+            <span className="shrink-0">Location: Kitchen</span>
+            <span className="shrink-0">
+              Device Type: {device.Device_Type ?? "Info not found"}
+            </span>
+            <span className="shrink-0">
+              Device Model: {device.Device_Model ?? "Info not found"}
             </span>
           </div>
         </div>

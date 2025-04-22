@@ -27,3 +27,26 @@
     box-shadow: 0 0 3px #16ecff, 0 0 10px #16ecff, 0 0 20px #16ecff;
     scale: 1.05;
 }
+
+.deviceTile{
+    width: 100px;
+    height: 80%;
+    background-color: rgb(25, 25, 25);
+    color: cyan;
+    margin: 10px;
+    flex-shrink: 0;
+    font-family: "FuturisticFont";
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    border: 2px solid cyan;
+    transition: 0.5s;
+    letter-spacing: 1px;
+}
+
+.deviceTile:hover, .deviceTile:focus {
+    color: black;
+    background-color: cyan;
+    box-shadow: 0 0 3px #16ecff, 0 0 10px #16ecff, 0 0 20px #16ecff;
+    scale: 1.05;
+  }

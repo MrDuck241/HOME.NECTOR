@@ -1,0 +1,8 @@
+{
+    "header_cameras_btn" : "CAMERAS",
+    "header_robots_btn" : "ROBOTS",
+    "header_devices_btn" : "DEVICES",
+    "header_alternative_view_btn" : "ALTERNATIVE VIEW",
+    "header_learnmore_btn" : "LEARN MORE",
+    "header_settings_btn" : "SETTINGS"
+}

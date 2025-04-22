@@ -3,8 +3,14 @@ import {
   CyanBtn,
   InfoBtn,
   ExpandableMenu,
+  DeviceTile,
 } from "../../components/buttons/Buttons";
 import "./CamerasPanelNavStyle.css";
+import {
+  PanelNavDevicesHolder,
+  PanelNavBtnsHolder,
+  PanelNavHolder,
+} from "../../components/holders/Holders";
 
 const CamerasPanelNav = ({
   onSelectCamerasGridOption,
@@ -25,7 +31,7 @@ const CamerasPanelNav = ({
   const popupRef = useRef(null);
 
   const devices_list_broadcast_server_url = import.meta.env
-    .VITE_NODEJS_BROADCAST_SCANNING_SERVER;
+    .VITE_BROADCAST_SCAN_URL;
 
   const getDevicesListFromBroadcast = (url, message) => {
     return fetch(url, {
@@ -95,11 +101,7 @@ const CamerasPanelNav = ({
   }, []);
 
   const renderCameraBox = (element, index) => {
-    return (
-      <button className="cameraDeviceBox" key={index}>
-        {element.Device_Name}
-      </button>
-    );
+    return <DeviceTile key={index}>{element.Device_Name}</DeviceTile>;
   };
 
   const connectToCameras = () => {
@@ -217,8 +219,8 @@ const CamerasPanelNav = ({
           </div>
         </div>
       )}
-      <div className="camerasPanelNav">
-        <div className="cameraDevicesHolder">
+      <PanelNavHolder>
+        <PanelNavDevicesHolder>
           {loading ? (
             <p className="text-cyan-400 text-lg italic font-semibold">
               Loading...
@@ -234,8 +236,8 @@ const CamerasPanelNav = ({
           ) : (
             <p>No cameras available</p>
           )}
-        </div>
-        <div className="navControlBtnsHolder">
+        </PanelNavDevicesHolder>
+        <PanelNavBtnsHolder>
           <div className="navControlBtnsSubHolder1">
             <div>
               <div className="text-cyan-400 text-md font-semibold flex items-center gap-[5px]">
@@ -283,8 +285,8 @@ const CamerasPanelNav = ({
               <button className="devicesListInfoBtn"></button>
             </div>
           </div>
-        </div>
-      </div>
+        </PanelNavBtnsHolder>
+      </PanelNavHolder>
     </>
   );
 };

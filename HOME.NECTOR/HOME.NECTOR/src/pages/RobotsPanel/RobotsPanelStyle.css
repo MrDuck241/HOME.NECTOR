@@ -1,14 +1,14 @@
 .robotsPanel {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("backgrounds/robots-panel-background.jpg");
+  width: 100%;
+  height: 110vh;
+  background-image: url("backgrounds/background.jpg");
   background-size: cover;
-  overflow: hidden;
+  background-attachment: fixed;
 }
 
 @media (max-width: 800px){
   .robotsPanel{
+    height: 180vh;
     overflow-x: hidden;
-    overflow-y: auto;
   }
 }

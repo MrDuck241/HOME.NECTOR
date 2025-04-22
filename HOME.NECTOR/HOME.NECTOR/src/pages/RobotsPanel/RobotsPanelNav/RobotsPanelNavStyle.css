@@ -4,63 +4,8 @@
 }
 
 @font-face {
-  font-family: "Normal";
-  src: url("/fonts/Roboto/Roboto-Regular.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "BtnsStyle";
   src: url("/fonts/Rethink_Sans/static/RethinkSans-Bold.ttf") format("truetype");
-}
-
-.robotsPanelNav{
-  width: 100vw;
-  height: 20vh;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(4px);
-  border-bottom: 2px solid lightgray;
-  display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
-  gap: 10px;
-}
-
-.robotsHolder{
-  height: 100%;
-  flex: 3;
-  border: 3px solid lightgray;
-  border-radius: 12px;
-  overflow-x: auto;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  order: 1;
-}
-
-.robotBox{
-  width: 85px;
-  height: 85px;
-  background-color: rgb(25, 25, 25);
-  color: cyan;
-  margin: 10px;
-  flex-shrink: 0;
-  font-family: "FuturisticFont";
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  border: 2px solid cyan;
-  transition: 0.5s;
-  letter-spacing: 1px;
-}
-
-.robotsNavBtnsHolder{
-  height: 100%;
-  flex: 2;
-  background-color: rgba(0, 0, 0, 0.336);
-  border: 3px solid lightgray;
-  border-radius: 12px;
-  display: flex;
-  order: 2;
 }
 
 .robotConnectionBtn{

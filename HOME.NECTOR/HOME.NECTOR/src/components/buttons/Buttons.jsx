@@ -31,3 +31,11 @@ export const ExpandableMenu = ({ onClickFunction }) => {
     />
   );
 };
+
+export const DeviceTile = ({ children, key, onClickFunction }) => {
+  return (
+    <button className="deviceTile" key={key} onClick={onClickFunction}>
+      {children}
+    </button>
+  );
+};

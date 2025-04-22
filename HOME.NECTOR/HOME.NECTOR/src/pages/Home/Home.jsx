@@ -1,7 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./HomeStyle.css";
 
 const HomeMain = () => {
+  const [texts, setTexts] = useState(null);
+
+  useEffect(() => {
+    const lang = localStorage.getItem("lang") ?? "en";
+    console.log("LANG => ", lang);
+    fetch(`/locals/home-locals/${lang}-texts.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        setTexts(data);
+        console.log(data);
+      })
+      .catch((error) => console.log("Loading texts file error: ", error));
+  }, []);
+
   const [showHomePopup, setShowHomePopup] = useState(true);
 
   return (
@@ -10,12 +24,7 @@ const HomeMain = () => {
         {showHomePopup ? (
           <>
             <div className="homePopupTextHolder">
-              HOME.NECTOR webiste is control panel for private IoT used in your
-              home. This website allows you to control deviced from your
-              network. You can collect data from sensors, display it and store
-              to database. You can also access multiple home cameras and watch
-              your home even if you are thousands meters away. Robots also can
-              be controled from this website. Enjoy and feel the future at home.
+              {texts ? texts.home_short_description : <div>Loading...</div>}
             </div>
             <div className="homePopupBtnsHolder">
               <button type="button" className="homePopupBtn">
